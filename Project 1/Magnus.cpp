@@ -27,7 +27,7 @@ std::vector<double> initial_spin = {0,0,0};
 double time_step = 0.01;
 std::string filename = "resultsP1.txt";
 
-void Main(){
+void main(){
     // std::cout << "What is the mass of the ball in kg? ";
     // std::cin >> mass;
 
@@ -74,4 +74,5 @@ void Main(){
     // std::cin >> filename;
 
     PingPong pingPong(mass, diameter, density, drag_coefficient, initial_position, initial_velocity, initial_spin, time_step, filename);
-};
+    pingPong.EulersMethod();
+}
