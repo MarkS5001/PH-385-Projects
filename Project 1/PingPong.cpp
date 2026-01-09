@@ -23,6 +23,10 @@ public:
         rx = initial_position[0];
         ry = initial_position[1];
         rz = initial_position[2];
+
+        vx = initial_velocity[0];
+        vy = initial_velocity[1];
+        vz = initial_velocity[2];
         
         std::ofstream Positions(filename);
         Positions << rx << "," << ry << "," << rz << "\n"; // Write initial values to file
