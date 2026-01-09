@@ -20,9 +20,15 @@ public:
 
     void EulersMethod()
     {
+        rx = initial_position[0];
+        ry = initial_position[1];
+        rz = initial_position[2];
+        
         std::ofstream Positions(filename);
+        Positions << rx << "," << ry << "," << rz << "\n"; // Write initial values to file
+
         // Loop that will stop will when the ball hits the ground
-        while(initial_position[2] > 0)
+        while(rz > 0)
         {
             // Update acceleration
             // ax += vx*time_step;
@@ -39,7 +45,7 @@ public:
             ry += vy*time_step;
             rz += vz*time_step;
 
-            Positions << rx << "," << ry << "," << rz << "\n"; // Write line to file
+            Positions << rx << "," << ry << "," << rz << "\n"; // Write new values to file
         };
         Positions.close(); // Close file when done
     };
@@ -58,8 +64,8 @@ private:
 
     // Initialize variables that will be used by the various functions in class
     double ax = 0;
-    double ay = -9.8;
-    double az = 0;
+    double ay = 0;
+    double az = -9.8;
     double vx;
     double vy;
     double vz;
