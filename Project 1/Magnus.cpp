@@ -74,4 +74,4 @@ void Main(){
     // std::cin >> filename;
 
     PingPong pingPong(mass, diameter, density, drag_coefficient, initial_position, initial_velocity, initial_spin, time_step, filename);
-}
+};

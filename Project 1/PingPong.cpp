@@ -25,9 +25,9 @@ public:
         while(initial_position[2] > 0)
         {
             // Update acceleration
-            ax += vx*time_step;
-            ay += vy*time_step;
-            az += vz*time_step;
+            // ax += vx*time_step;
+            // ay += vy*time_step;
+            // az += vz*time_step;
 
             // Update velocity
             vx += ax*time_step;
@@ -57,9 +57,9 @@ private:
     std::string filename;
 
     // Initialize variables that will be used by the various functions in class
-    double ax;
-    double ay;
-    double az;
+    double ax = 0;
+    double ay = -9.8;
+    double az = 0;
     double vx;
     double vy;
     double vz;
