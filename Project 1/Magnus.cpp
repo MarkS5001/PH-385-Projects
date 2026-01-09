@@ -10,13 +10,13 @@
 // double diameter;
 // double density;
 // double drag_coefficient;
-// double initial_position;
-// std::vector<double> initial_velocity;
-// std::vector<double> initial_spin;
+// std::vector<double> initial_position(3);
+// std::vector<double> initial_velocity(3);
+// std::vector<double> initial_spin(3);
 // double time_step;
 // std::string filename;
 
-// So I don't have to type every time
+// So I don't have to type every time (for testing purposes)
 double mass = 2.7/1000; // kg
 double diameter = 4/100; //cm
 double density = 0;
