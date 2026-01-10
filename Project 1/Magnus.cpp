@@ -28,7 +28,7 @@ std::vector<double> initial_spin = {0,0,0};
 double time_step = 0.01;
 std::string filename = "resultsP1.txt";
 
-int main(){
+void main(){
     // std::cout << "What is the mass of the ball in kg? ";
     // std::cin >> mass;
 
@@ -80,5 +80,4 @@ int main(){
     // Plot the data after running
     system("gnuplot -persistent PingPong_Plot.gp");
 
-    return 0;
 }
