@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "PingPong.cpp"
+#include <cstdlib> // Library to have gnuplot plot the data after running
 
 // Initialize variables for user input
 // double mass;
@@ -75,4 +76,7 @@ void main(){
 
     PingPong pingPong(mass, diameter, density, drag_coefficient, initial_position, initial_velocity, initial_spin, time_step, filename);
     pingPong.EulersMethod();
+
+    // Plot the data after running
+    system("gnuplot -persistent PingPong_Plot.gp");
 }
