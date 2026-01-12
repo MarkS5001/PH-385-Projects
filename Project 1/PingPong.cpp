@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <cmath>
 
 class PingPong {
 public:
@@ -32,12 +33,21 @@ public:
         Positions << rx << "," << ry << "," << rz << "\n"; // Write initial values to file
 
         // Loop that will stop will when the ball hits the ground
-        while(rz > 0)
+        while(rz > 0 && rz < 50)
         {
+            // Calculate drag
+            v = std::sqrt(vx*vx+vy*vy+vz*vz);
+            Fx = Drag_Force(v, vx);
+            Fy = Drag_Force(v, vy);
+            Fz = Drag_Force(v, vz);
+
+            // Calculate magnus force
+            Magnus_Force();
+
             // Update acceleration
-            // ax += vx*time_step;
-            // ay += vy*time_step;
-            // az += vz*time_step;
+            ax = Fx/mass+magnusForce[0];
+            ay = Fy/mass+magnusForce[1];
+            az = Fz/mass+magnusForce[2]-9.8;
 
             // Update velocity
             vx += ax*time_step;
@@ -54,6 +64,20 @@ public:
         Positions.close(); // Close file when done
     };
 
+    double Drag_Force(double v, double vr)
+    {
+        A = std::pow(diameter/2,2)*3.1415;
+        drag = -0.5*drag_coefficient*density*A*v*vr;
+        return drag;
+    };
+
+    void Magnus_Force()
+    {
+        magnusForce[0] = 0.04*(initial_spin[1]*vz-initial_spin[2]*vy);
+        magnusForce[1] = 0.04*(initial_spin[2]*vx-initial_spin[0]*vz);
+        magnusForce[2] = 0.04*(initial_spin[0]*vy-initial_spin[1]*vx);
+    };
+
 private:
     // Initialize variables that the class will use from user input
     double mass;
@@ -67,13 +91,20 @@ private:
     std::string filename;
 
     // Initialize variables that will be used by the various functions in class
-    double ax = 0;
-    double ay = 0;
-    double az = -9.8;
+    double ax;
+    double ay;
+    double az;
     double vx;
     double vy;
     double vz;
     double rx;
     double ry;
     double rz;
+    double Fx;
+    double Fy;
+    double Fz;
+    double v;
+    double A;
+    double drag;
+    double magnusForce[3];
 };
