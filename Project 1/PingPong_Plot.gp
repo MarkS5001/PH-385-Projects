@@ -13,7 +13,7 @@ set grid
 
 # Handle the data
 # command "path" x:y:z connect_with_lines_(with lines) linewidth_(lw) #_for_linewidth line_color_(lc)
-splot "C:/Users/markb/OneDrive/College/BYUI/26 8 Winter/PH 385/PH-385-Projects/Project 1/resultsP1.txt" using 1:2:3 with lines lw 2 lc rgb "red" title "Ball Path"
+splot "C:/Users/markb/OneDrive/College/BYUI/26 8 Winter/PH 385/PH-385-Projects/Project 1/resultsP1.txt" using 1:2:3 with lines lw 2 lc rgb "purple" title "Ball Path"
 
 # Keep the window open
 pause -1 "Press OK or Enter to close the plot"
