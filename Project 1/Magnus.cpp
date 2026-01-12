@@ -18,14 +18,14 @@
 // std::string filename;
 
 // So I don't have to type every time (for testing purposes)
-double mass = 2.7/1000; // kg
-double diameter = 4/100; //cm
-double density = 0;
-double drag_coefficient = 0;
+double mass = 0.0027; // kg
+double diameter = 0.04; //cm
+double density = 1.27;
+double drag_coefficient = 0.5;
 std::vector<double> initial_position = {0,0,10};
 std::vector<double> initial_velocity = {15,5,15};
-std::vector<double> initial_spin = {0,0,0};
-double time_step = 0.01;
+std::vector<double> initial_spin = {-20,-40,20};
+double time_step = 0.001;
 std::string filename = "resultsP1.txt";
 
 void main(){
