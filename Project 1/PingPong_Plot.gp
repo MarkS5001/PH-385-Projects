@@ -3,9 +3,9 @@ set datafile separator ","
 
 # Labels for everything
 set title "Ping Pong Ball Trajectory"
-set xlabel "X Distance (m)"
-set ylabel "Y Distance (m)"
-set zlabel "Height (m)"
+set xlabel "x (m)"
+set ylabel "y (m)"
+set zlabel "z (m)"
 
 # Adjust the view
 set view 60, 30, 1, 1
