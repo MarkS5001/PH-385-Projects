@@ -1,11 +1,23 @@
 /*
+PH 385 Project 1 Main File
 
+Models the projectile motion of a ball in three dimensions, including
+quadratic air resistance and the Magnus force.
+
+The user inputs the mass of the ball, diameter of the ball, air density, drag
+coefficient, initial position, initial velocity, spin angular velocity,
+and time step, all in SI units. This is followed by an output file name.
+
+Author: Mark Smith (smi20046@byui.edu)
+Date: 1/13/2026
 */
+
 #include <iostream>
 #include <vector>
 #include "PingPong.cpp"
 #include <cstdlib> // Library to have gnuplot plot the data after running
 using namespace std;
+
 // Initialize variables for user input
 // double mass;
 // double diameter;
@@ -17,7 +29,7 @@ using namespace std;
 // double time_step;
 // string filename;
 
-// So I don't have to type every time (for testing purposes)
+// Variables for testing purposes
 double mass = 0.0027; // kg
 double diameter = 0.04; //cm
 double density = 1.27;
@@ -29,6 +41,8 @@ double time_step = 0.001;
 string filename = "resultsP1.txt";
 
 void main(){
+    // Get the user input
+
     // cout << "What is the mass of the ball in kg? ";
     // cin >> mass;
 
@@ -74,6 +88,7 @@ void main(){
     // cout << "What filename will it be saved to? ";
     // cin >> filename;
 
+    // Give starting conditions
     PingPong pingPong(mass, 
         diameter, 
         density, 
@@ -84,9 +99,9 @@ void main(){
         time_step, 
         filename);
     
+    // Run the Euler's method
     pingPong.EulersMethod();
 
     // Plot the data after running
     system("gnuplot -persistent PingPong_Plot.gp");
-
 }
