@@ -74,7 +74,16 @@ void main(){
     // cout << "What filename will it be saved to? ";
     // cin >> filename;
 
-    PingPong pingPong(mass, diameter, density, drag_coefficient, initial_position, initial_velocity, initial_spin, time_step, filename);
+    PingPong pingPong(mass, 
+        diameter, 
+        density, 
+        drag_coefficient, 
+        initial_position, 
+        initial_velocity, 
+        initial_spin, 
+        time_step, 
+        filename);
+    
     pingPong.EulersMethod();
 
     // Plot the data after running
