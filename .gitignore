@@ -1,4 +1,3 @@
-# Ignore specific build and executable files
 *.ilk
 *.obj
 *.pdb
