@@ -43,7 +43,7 @@ void PingPong::EulersMethod()
     ofstream Positions(filename); 
     Positions << rx << "," << ry << "," << rz << "\n"; // Write initial values to file
 
-    // Loop that will stop will when the ball hits the ground or if it goes too high
+    // Loop that will stop will when the ball hits the ground or if it goes too high (to avoid infinite loops)
     while(rz > 0 && rz < 100)
     {
         // Calculate drag
