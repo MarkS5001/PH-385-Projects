@@ -8,16 +8,14 @@ The user inputs the mass of the ball, diameter of the ball, air density, drag
 coefficient, initial position, initial velocity, spin angular velocity,
 and time step, all in SI units. This is followed by an output file name.
 
-
-
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/13/2026
+Date: 1/14/2026
 */
 
 #include <iostream>
 #include <vector>
 #include "PingPong.cpp"
-#include <cstdlib> // Library to have gnuplot plot the data after running
+// #include <cstdlib> // Library to have gnuplot plot the data after running
 using namespace std;
 
 // Initialize variables for user input
@@ -104,6 +102,6 @@ void main(){
     // Run the Euler's method
     pingPong.EulersMethod();
 
-    // Plot the data after running
-    system("gnuplot -persistent PingPong_Plot.gp");
+    // Plot the data after running 
+    // system("gnuplot -persistent PingPong_Plot.gp");
 }
