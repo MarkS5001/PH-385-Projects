@@ -8,14 +8,14 @@ using namespace PP;
 
 // Define the constructor to assign initial parameters
 PingPong::PingPong(double Mass, 
-    double Diameter, 
-    double Density, 
-    double Drag_coefficient, 
-    vector<double> Initial_position, 
-    vector<double> Initial_velocity, 
-    vector<double> Initial_spin, 
-    double Time_step, 
-    string Filename) 
+    const double Diameter, 
+    const double Density, 
+    const double Drag_coefficient, 
+    const vector<double>& Initial_position, 
+    const vector<double>& Initial_velocity, 
+    const vector<double>& Initial_spin, 
+    const double Time_step, 
+    const string& Filename) 
     :
     mass(Mass),
     diameter(Diameter),

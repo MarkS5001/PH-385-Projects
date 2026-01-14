@@ -33,14 +33,14 @@ namespace PP
     public:
         // Initialize functions
         PingPong(double Mass, // Constructor
-            double Diameter, 
-            double Density, 
-            double Drag_coefficient, 
-            std::vector<double> Initial_position, 
-            std::vector<double> Initial_velocity, 
-            std::vector<double> Initial_spin, 
-            double Time_step, 
-            std::string Filename);
+            const double Diameter, 
+            const double Density, 
+            const double Drag_coefficient, 
+            const std::vector<double>& Initial_position, 
+            const std::vector<double>& Initial_velocity, 
+            const std::vector<double>& Initial_spin, 
+            const double Time_step, 
+            const std::string& Filename);
 
         void EulersMethod(); // Euler's method for loop
         double DragForce(double v, double vr); // Drag calculation
