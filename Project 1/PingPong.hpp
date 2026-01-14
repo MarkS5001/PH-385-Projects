@@ -26,8 +26,8 @@ namespace PP
 
         double Fx, Fy, Fz; // Make force (for drag)
 
-        double A; // Make area
-        double drag; // Make drag
+        double A = pow(diameter/2,2)*3.1415; // Make area
+        double drag; // Make drag force
         double magnusForce[3]; // Make magnus force
 
     public:

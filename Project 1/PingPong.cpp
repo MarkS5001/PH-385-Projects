@@ -78,7 +78,6 @@ void PingPong::EulersMethod()
 // Define drag calculation
 double PingPong::DragForce(double v, double vr)
 {
-    A = pow(diameter/2,2)*3.1415;
     drag = -0.5*drag_coefficient*density*A*v*vr;
     return drag;
 };
