@@ -32,7 +32,9 @@ namespace PP
 
     public:
         // Initialize functions
-        PingPong(double Mass, // Constructor
+
+        // Constructor
+        PingPong(double Mass, 
             const double Diameter, 
             const double Density, 
             const double Drag_coefficient, 
