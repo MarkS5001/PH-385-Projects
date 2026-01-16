@@ -44,6 +44,8 @@ namespace Pendulum
                             const double DrivingFrequency,
                             const std::string& Filename);
             void RungeKutta();
-            int PhysicalPendulum(double currentTheta, double currentOmega);
+            double PhysicalPendulum(double currentTheta, double currentOmega);
+            double Theta(double currentOmega);
+            // int RK4(double theta, double time, double timestep, )
     };
 }

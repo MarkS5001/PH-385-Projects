@@ -43,9 +43,14 @@ DrivenPendulum::DrivenPendulum(const double Mass,
                                 omega(InitialAngularVelocity)
                                 {};
                                 
-int DrivenPendulum::PhysicalPendulum(double currentTheta, double currentOmega)
+double DrivenPendulum::PhysicalPendulum(double currentTheta, double currentOmega)
 {
-    return -g/length*sin(currentTheta)-dampingCoefficient*currentOmega+drivingForce*sin(drivingFrequency*time);
+    return (-g/length*sin(currentTheta)-dampingCoefficient*currentOmega+drivingForce*sin(drivingFrequency*time))*timeStep;
+};
+
+double DrivenPendulum::Theta(double currentOmega)
+{
+    return currentOmega*timeStep;
 };
 
 void DrivenPendulum::RungeKutta()
@@ -57,11 +62,17 @@ void DrivenPendulum::RungeKutta()
     while(time < duration)
     {
         // Update values using RK4
-        k1 = timeStep*PhysicalPendulum(theta, omega);
-        k2 = timeStep*PhysicalPendulum(theta+0.5*k1, omega+0.5*timeStep);
-        k3 = timeStep*PhysicalPendulum(theta+0.5*k2, omega+0.5*timeStep);
-        k4 = timeStep*PhysicalPendulum(theta+k3, omega+timeStep);
-        theta += (k1+2*k2+2*k3+k4)/6;
+        k1 = timeStep*PhysicalPendulum(omega, time);
+        k2 = timeStep*PhysicalPendulum(omega+0.5*k1, time+0.5*timeStep);
+        k3 = timeStep*PhysicalPendulum(omega+0.5*k2, time+0.5*timeStep);
+        k4 = timeStep*PhysicalPendulum(omega+k3, time+timeStep);
+        omega += (k1+2*k2+2*k3+k4)/6;
+
+        k1 = timeStep*PhysicalPendulum(theta, time);
+        k2 = timeStep*PhysicalPendulum(theta+0.5*k1, time+0.5*timeStep);
+        k3 = timeStep*PhysicalPendulum(theta+0.5*k2, time+0.5*timeStep);
+        k4 = timeStep*PhysicalPendulum(theta+k3, time+timeStep);
+        theta += omega*timeStep;
         time += timeStep;
 
         // Write values to file
