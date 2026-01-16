@@ -14,7 +14,7 @@ Date: 1/14/2026
 
 #include <iostream>
 #include <vector>
-#include "PingPong.cpp"
+#include "Pendulum.cpp"
 // #include <cstdlib> // Library to have gnuplot plot the data after running
 using namespace std;
 
@@ -31,7 +31,10 @@ double drivingFrequency;
 
 void main()
 {
+    DrivenPendulum pend(1, 9.8, 0.5, 0.2, 0, 180, 0.01, 1.2, 0.66, "resultsP2.txt");
 
+    pend.RungeKutta();
+    
     // Plot the data after running 
-    // system("gnuplot -persistent PingPong_Plot.gp");
+    system("gnuplot -persistent plot.gp");
 }
