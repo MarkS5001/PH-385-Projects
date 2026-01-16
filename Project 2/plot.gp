@@ -7,7 +7,7 @@ set xlabel "t (s)"
 set ylabel "theta (rad)"
 
 # Adjust the view
-set view 60, 30, 1, 1
+# set view 60, 30, 1, 1
 set grid
 
 # Handle the data
