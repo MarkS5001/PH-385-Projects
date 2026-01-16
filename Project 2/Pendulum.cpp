@@ -12,3 +12,11 @@ of steps needed will increase if a user does this.
 Author: Mark Smith (smi20046@byui.edu)
 Date: 1/14/2026
 */
+
+#include "Pendulum.hpp"
+#include <iostream>
+#include <fstream>
+#include <cmath>
+using namespace std;
+using namespace Pendulum;
+
