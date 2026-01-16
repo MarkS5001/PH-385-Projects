@@ -11,3 +11,10 @@ and time step, all in SI units. This is followed by an output file name.
 Author: Mark Smith (smi20046@byui.edu)
 Date: 1/14/2026
 */
+
+void main()
+{
+    
+    // Plot the data after running 
+    // system("gnuplot -persistent PingPong_Plot.gp");
+}
