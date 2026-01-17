@@ -19,19 +19,41 @@ Date: 1/14/2026
 using namespace std;
 
 // Initial variables
-double mass;
-double length;
-double dampingCoefficient;
-double initialAngle;
-double initialAngularVelocity;
-double duration;
-double timeStep;
-double drivingForce;
-double drivingFrequency;
+// double mass;
+// double length;
+// double dampingCoefficient;
+// double initialAngle;
+// double initialAngularVelocity;
+// double duration;
+// double timeStep;
+// double drivingForce;
+// double drivingFrequency;
+// string filename;
+
+// Variables for testing
+double mass = 1;
+double length = 9.8;
+double dampingCoefficient = 0.5;
+double initialAngle = 0.2;
+double initialAngularVelocity = 0;
+double duration = 60;
+double timeStep = 0.0004;
+double drivingForce = 1.2;
+double drivingFrequency = 0.66;
+string filename = "resultsP2.txt";
 
 void main()
 {
-    DrivenPendulum pend(1, 9.8, 0.5, 0.2, 0, 180, 0.01, 1.2, 0.66, "resultsP2.txt");
+    DrivenPendulum pend(mass,
+                        length,
+                        dampingCoefficient,
+                        initialAngle,
+                        initialAngularVelocity,
+                        duration,
+                        timeStep,
+                        drivingForce,
+                        drivingFrequency,
+                        filename);
 
     pend.RungeKutta();
     
