@@ -74,7 +74,7 @@ void DrivenPendulum::RungeKutta()
         k2o = timeStep*PhysicalPendulum(theta, omega+0.5*k1o, time+0.5*timeStep);
         k3o = timeStep*PhysicalPendulum(theta, omega+0.5*k2o, time+0.5*timeStep);
         k4o = timeStep*PhysicalPendulum(theta, omega+k3o, time+timeStep);
-        
+
         // Now theta 
         // The equation is time-independent. It also just returns omega so the function could not be called.
         // It is left in however to show that it is updated the same.
@@ -86,6 +86,14 @@ void DrivenPendulum::RungeKutta()
         omega += (k1o+2*k2o+2*k3o+k4o)/6;        
         theta += (k1t+2*k2t+2*k3t+k4t)/6;
         time += timeStep;
+
+        if (theta < -3.1415)
+        {
+            theta += 2*3.1415;
+        } else if (theta > 3.1415)
+        {
+            theta -= 2*3.1415;
+        };
 
         // Write values to file
         Position << theta << "," << omega << "," << time << "\n"; 
