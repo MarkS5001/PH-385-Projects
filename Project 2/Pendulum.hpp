@@ -9,6 +9,7 @@ Date: 1/14/2026
 
 #pragma once
 #include <vector>
+#include <functional>
 
 namespace Pendulum
 {
@@ -27,7 +28,8 @@ namespace Pendulum
             const double g = 9.81; // Gravity
 
             // Variables for loops
-            double k1, k2, k3, k4;
+            double k1o, k2o, k3o, k4o; // Runge-Kutta coefficients for omega
+            double k1t, k2t, k3t, k4t; // Runge-Kutta coefficients for theta
             double time;
             double theta;
             double omega;
@@ -44,8 +46,8 @@ namespace Pendulum
                             const double DrivingFrequency,
                             const std::string& Filename);
             void RungeKutta();
-            double PhysicalPendulum(double currentTheta, double currentOmega);
+            double PhysicalPendulum(double currentTheta, double currentOmega, double currentTime);
             double Theta(double currentOmega);
-            // int RK4(double theta, double time, double timestep, )
+            // double RK4(double currentTheta, double currentOmega, double currentTime, double timestep, std::function<double(double, double, double)> PhysicalPendulum);
     };
 }
