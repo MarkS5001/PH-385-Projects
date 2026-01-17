@@ -40,7 +40,8 @@ DrivenPendulum::DrivenPendulum(const double Mass,
                                 drivingFrequency(DrivingFrequency),
                                 filename(Filename),
                                 theta(InitialAngle),
-                                omega(InitialAngularVelocity)
+                                omega(InitialAngularVelocity),
+                                time(0)
                                 {};
                                 
 double DrivenPendulum::PhysicalPendulum(double currentTheta, double currentOmega, double currentTime)

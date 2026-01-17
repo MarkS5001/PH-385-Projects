@@ -9,7 +9,6 @@ Date: 1/14/2026
 
 #pragma once
 #include <vector>
-#include <functional>
 
 namespace Pendulum
 {
