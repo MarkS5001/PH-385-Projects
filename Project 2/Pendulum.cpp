@@ -97,7 +97,8 @@ void DrivenPendulum::RungeKutta()
         };
 
         // Write values to file
-        Position << theta << "," << omega << "," << time << "\n"; 
+        if (std::remainder(time, drivingForce/2/3.1415) < 1e-16){
+        Position << theta << "," << omega << "," << time << "\n"; };
     }
     Position.close();
 };
