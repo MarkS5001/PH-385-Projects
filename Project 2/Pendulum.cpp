@@ -97,15 +97,21 @@ void DrivenPendulum::RungeKutta()
         };
 
         // Write values to file
-        Position << theta << "," << omega << "," << time;
+        double theta2, omega2 = 0;
+        double theta4, omega4 = 0;
+        if (sin(time*drivingFrequency-3.1415/2.0) < 0 && sin((time+timeStep)*drivingFrequency-3.1415/2.0) >= 0)
+        {
+        theta2 = theta;
+        omega2 = omega;
+        };
 
-        if (sin(time*drivingFrequency-3.1415/2.0) < 0 && sin((time+timeStep)*drivingFrequency-3.1415/2.0) >= 0){
-        Position << theta << "," << omega << "," << time; };
+        if (sin(time*drivingFrequency-3.1415/4.0) < 0 && sin((time+timeStep)*drivingFrequency-3.1415/4.0) >= 0)
+        {
+        theta4 = theta;
+        omega4 = omega;
+        };
 
-        if (sin(time*drivingFrequency-3.1415/4.0) < 0 && sin((time+timeStep)*drivingFrequency-3.1415/4.0) >= 0){
-        Position << theta << "," << omega << "," << time; };
-
-        Position << "\n";
+        Position << theta << "," << omega << "," << time << "," << theta2 << "," << omega2 << "," << theta4 << "," << omega4 << "\n";
     }
     Position.close();
 };
