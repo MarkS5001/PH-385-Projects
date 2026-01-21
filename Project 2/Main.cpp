@@ -35,11 +35,11 @@ double mass = 1;
 double length = 9.8;
 double dampingCoefficient = 0.5;
 double initialAngle = 0.2;
-double initialAngularVelocity = 0;
-double duration = 60;
+double initialAngularVelocity = 0.0;
+double duration = 18000;//60;
 double timeStep = 0.0004;
 double drivingForce = 1.2;
-double drivingFrequency = 0.66;
+double drivingFrequency = 2.0/3.0;
 string filename = "resultsP2.txt";
 
 void main()

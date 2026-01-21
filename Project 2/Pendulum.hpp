@@ -24,7 +24,7 @@ namespace Pendulum
             double drivingForce;
             double drivingFrequency;
             std::string filename;
-            const double g = 9.81; // Gravity
+            const double g = 9.8; // Gravity
 
             // Variables for loops
             double k1o, k2o, k3o, k4o; // Runge-Kutta coefficients for omega
