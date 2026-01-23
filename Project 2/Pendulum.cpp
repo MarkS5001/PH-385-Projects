@@ -1,16 +1,16 @@
 /*
-Class PingPong
+Class Pendulum
 
-Simulates the projectile motion of a ball including quadratic air
-resistance, and the Magnus force using Euler's method.
+Simulates the motion of a physical pendulum with a driving force, 
+and dampening
 
-This code has limitations in the form of time step. With the use of Euler's
-method, h (the time step) squared terms are neglected, and these terms will add up.
-You can also decrease the time step to decrease the error, however the number
-of steps needed will increase if a user does this.
+This code has limitations in the form of time step. This program uses
+Runge-Kutta of fourth order, which means it can't predict with 5th order accuracy.
+Depending on what the time step is as well changes the starting point for a theta vs time plot
+just a little.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/14/2026
+Date: 1/23/2026
 */
 
 #include "Pendulum.hpp"
@@ -20,6 +20,7 @@ Date: 1/14/2026
 using namespace std;
 using namespace Pendulum;
 
+// Constructor to initialize the values
 DrivenPendulum::DrivenPendulum(const double Mass,
                                 const double Length,
                                 const double DampingCoefficient,
@@ -43,29 +44,24 @@ DrivenPendulum::DrivenPendulum(const double Mass,
                                 omega(InitialAngularVelocity),
                                 time(0)
                                 {};
-                                
+                               
+// Equation to update omega
 double DrivenPendulum::PhysicalPendulum(double currentTheta, double currentOmega, double currentTime)
 {
     return -g/length*sin(currentTheta)-dampingCoefficient*currentOmega+drivingForce*sin(drivingFrequency*currentTime);
 };
 
+// Equation to update theta
 double DrivenPendulum::Theta(double currentOmega)
 {
     return currentOmega;
 };
 
-// double DrivenPendulum::RK4(double currentTheta, double currentOmgea, double currentTime, double timestep, std::function<double(double, double, double)> Func)
-// {
-//     double delta[2];
-//     delta[0] = omega;
-//     delta[1] = Func(currentTheta, currentOmgea, currentTime);
-// };
-
+// Runge-Kutta loop
 void DrivenPendulum::RungeKutta()
 {
     // Initialize file handling
     ofstream Position(filename); 
-    // Position << theta << "," << omega << "," << time << "\n"; // Write initial values to file
 
     while(time < duration)
     {
@@ -96,8 +92,10 @@ void DrivenPendulum::RungeKutta()
             theta -= 2*3.1415;
         };
 
-        // Write values to file
+        // Write values to file. Commented and uncommented depending on what is needed.
+
         // Position << theta << "," << omega << "\n";
+
         // if (sin(time*drivingFrequency-3.1415/2.0) < 0 && sin((time+timeStep)*drivingFrequency-3.1415/2.0) >= 0)
         // {
         //     Position << theta << "," << omega << "\n";

@@ -1,10 +1,10 @@
 /*
-Header file for PingPong class
+Header file for Pendulum class
 
-Creates an outline of what the PingPong class defines
+Creates an outline of what the Pendulum class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/14/2026
+Date: 1/23/2026
 */
 
 #pragma once
@@ -34,6 +34,7 @@ namespace Pendulum
             double omega;
 
         public:
+            // Constructor to initialize the values
             DrivenPendulum(const double Mass,
                             const double Length,
                             const double DampingCoefficient,
@@ -44,9 +45,14 @@ namespace Pendulum
                             const double DrivingForce,
                             const double DrivingFrequency,
                             const std::string& Filename);
+            
+            // Runge-Kutta loop
             void RungeKutta();
+
+            // Equation to update omega
             double PhysicalPendulum(double currentTheta, double currentOmega, double currentTime);
+
+            // Equation to update theta
             double Theta(double currentOmega);
-            // double RK4(double currentTheta, double currentOmega, double currentTime, double timestep, std::function<double(double, double, double)> PhysicalPendulum);
     };
 }
