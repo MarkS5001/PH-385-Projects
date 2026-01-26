@@ -47,9 +47,9 @@ void CelestialSystem::AddCelestialObject(double mass, double radiusX, double rad
 }
 
 // Method to calculate acceleration between the bodies of current interest
-double CelestialSystem::AccelerationBetweenBodies(double mass1, double mass2, double distance)
+double CelestialSystem::AccelerationBetweenBodies(double mass, double distance)
 {
-    return G*mass1*mass2/(distance*distance);
+    return G*mass/(distance*distance);
 }
 
 // Method to calculate the acceleration
@@ -90,8 +90,8 @@ void CelestialSystem::TotalAcceleration()
                 double distanceY = ry - ryI;
 
                 // Acceleration calculations
-                accelerationX += AccelerationBetweenBodies(mass, massI, distanceX);
-                accelerationY += AccelerationBetweenBodies(mass, massI, distanceY);
+                accelerationX += AccelerationBetweenBodies(massI, distanceX);
+                accelerationY += AccelerationBetweenBodies(massI, distanceY);
             }
         }
         currentCelestialObject.SetAccelerationX(accelerationX);
@@ -102,5 +102,5 @@ void CelestialSystem::TotalAcceleration()
 // Method to calculate the position
 void CelestialSystem::VerletMethod(double TimeStep)
 {
-    int i = 0;
+
 }

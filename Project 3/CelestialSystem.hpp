@@ -25,7 +25,7 @@ namespace CS
             CelestialSystem(double TimeStep);
             void AddCelestialObject(double mass, double radiusX, double radiusY, 
                                     double velocityX, double velocityY);
-            double AccelerationBetweenBodies(double mass1, double mass2, double distance);
+            double AccelerationBetweenBodies(double mass, double distance);
             void TotalAcceleration();
             void VerletMethod(double TimeStep);
     };
