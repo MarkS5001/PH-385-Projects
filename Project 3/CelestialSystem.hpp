@@ -8,19 +8,25 @@ Date: 1/26/2026
 */
 
 #pragma once
-// #include <vector>
+#include <vector>
+#include "CelestialObject.cpp"
 
 namespace CS
 {
     class CelestialSystem
     {
         private:
-            double sunMass = 1;
-            double earthMass = 3.0027e-6;
-            double jupiterMass = 9.54588e-4;
-
+            double timeStep;
+            double G = 4*3.1415*3.1415;
+            std::vector<CelestialObject> celestialObjects;
 
         public:
-            CelestialSystem();
+            // CelestialSystem(int amount);
+            CelestialSystem(double TimeStep);
+            void AddCelestialObject(double mass, double radiusX, double radiusY, 
+                                    double velocityX, double velocityY);
+            double AccelerationBetweenBodies(double mass1, double mass2, double distance);
+            void TotalAcceleration();
+            void VerletMethod(double TimeStep);
     };
 }
