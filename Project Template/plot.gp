@@ -15,5 +15,9 @@ set grid
 # command "path" x:y:z connect_with_lines_(with lines) linewidth_(lw) #_for_linewidth line_color_(lc)
 splot "C:/Users/markb/OneDrive/College/BYUI/26 8 Winter/PH 385/PH-385-Projects/Project 2/resultsP2.txt" using 1:2:3 with lines lw 2 lc rgb "purple" title "Ball Path"
 
+# Save it
+set terminal png
+set output "resultsP2.png"
+
 # Keep the window open
 pause -1 "Press OK or Enter to close the plot"
