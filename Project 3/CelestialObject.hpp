@@ -16,21 +16,31 @@ namespace CO
     {
         private:
             double mass;
-            double radius;
-            double velocity;
+            double radius[2];
+            double velocity[2];
+            double acceleration[2];
 
         public:
             // Initialize the parameters
-            CelestialObject(const double Mass, const double Radius, const double Velocity);
+            CelestialObject(const double Mass, const double RadiusX, const double RadiusY, 
+                            const double VelocityX, const double VelocityY);
 
             // Methods to set the parameters
             void SetMass(double Mass);
-            void SetRadius(double Radius);
-            void SetVelocity(double Velocity);
+            void SetRadiusX(double RadiusX);
+            void SetRadiusY(double RadiusY);
+            void SetVelocityX(double VelocityX);
+            void SetVelocityY(double VelocityY);
+            void SetAccelerationX(double AccelerationX);
+            void SetAccelerationY(double AccelerationY);
 
             // Methods to get the parameters
             double GetMass();
-            double GetRadius();
-            double GetVelocity();
+            double GetRadiusX();
+            double GetRadiusY();
+            double GetVelocityX();
+            double GetVelocityY();
+            double GetAccelerationX();
+            double GetAccelerationY();
     };
 }

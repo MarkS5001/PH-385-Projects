@@ -15,37 +15,83 @@ using namespace std;
 using namespace CO;
 
 // Constructor for the celestial object
-CelestialObject::CelestialObject(const double Mass, const double Radius, const double Velocity) : 
-                                    mass(Mass), radius(Radius), velocity(Velocity){};
+CelestialObject::CelestialObject(const double Mass, const double RadiusX, const double RadiusY, 
+                                    const double VelocityX, const double VelocityY) : mass(Mass)
+{
+    radius[0] = RadiusX;
+    radius[1] = RadiusY;
+    velocity[0] = VelocityX;
+    velocity[1] = VelocityY;
+};
 
-// The following three methods set the parameters the celestial object can hold
+// The following seven methods set the parameters the celestial object can hold
 void CelestialObject::SetMass(double Mass)
 {
     mass = Mass;
 };
 
-void CelestialObject::SetRadius(double Radius)
+void CelestialObject::SetRadiusX(double RadiusX)
 {
-    radius = Radius;
+    radius[0] = RadiusX;
 };
 
-void CelestialObject::SetVelocity(double Velocity)
+void CelestialObject::SetRadiusY(double RadiusY)
 {
-    velocity = Velocity;
+    radius[2] = RadiusY;
 };
 
-// The following three methods get the parameters the celestial object can hold
+void CelestialObject::SetVelocityX(double VelocityX)
+{
+    velocity[0] = VelocityX;
+};
+
+void CelestialObject::SetVelocityY(double VelocityY)
+{
+    velocity[1] = VelocityY;
+};
+
+void CelestialObject::SetAccelerationX(double AccelerationX)
+{
+    acceleration[0] = AccelerationX;
+};
+
+void CelestialObject::SetAccelerationY(double AccelerationY)
+{
+    acceleration[1] = AccelerationY;
+};
+
+// The following seven methods get the parameters the celestial object can hold
 double CelestialObject::GetMass()
 {
     return mass;
 };
 
-double CelestialObject::GetRadius()
+double CelestialObject::GetRadiusX()
 {
-    return radius;
+    return radius[0];
 };
 
-double CelestialObject::GetVelocity()
+double CelestialObject::GetRadiusY()
 {
-    return velocity;
+    return radius[1];
+};
+
+double CelestialObject::GetVelocityX()
+{
+    return velocity[0];
+};
+
+double CelestialObject::GetVelocityY()
+{
+    return velocity[1];
+};
+
+double CelestialObject::GetAccelerationX()
+{
+    return acceleration[0];
+};
+
+double CelestialObject::GetAccelerationY()
+{
+    return acceleration[1];
 };
