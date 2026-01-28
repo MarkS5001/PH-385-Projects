@@ -96,6 +96,9 @@ void CelestialSystem::VerletMethod()
     // Initialize file handling
     ofstream Position(filename);
 
+    // Keeps track of condition for loop
+    double time = timeStep;
+
     // Save initial positions to the file
     for (int i = 0; i < size; i++)
     {
@@ -104,7 +107,7 @@ void CelestialSystem::VerletMethod()
     }
 
     // End the line on the file
-    Position << endl;
+    Position << time << endl;
 
     // Calculate initial acceleration
     CelestialSystem::TotalAcceleration();
@@ -138,11 +141,11 @@ void CelestialSystem::VerletMethod()
         Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
     }
 
-    // End the line on the file
-    Position << endl;
+    // Update time
+    time += timeStep;
 
-    // Keeps track of condition for loop
-    double time = timeStep;
+    // End the line on the file
+    Position << time << endl;
 
     // Loop for second Varlet step
     while (time < duration)
@@ -178,7 +181,7 @@ void CelestialSystem::VerletMethod()
             Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
         }
         // End the line on the file
-        Position << endl;
+        Position << time << endl;
 
         // Update time
         time += timeStep;

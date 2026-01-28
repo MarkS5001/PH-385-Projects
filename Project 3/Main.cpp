@@ -30,7 +30,7 @@ double jupiterRadiusX = -5.2, jupiterRadiusY = 0.0;
 // Initial velocities of interested objects
 double sunVelocityX = 0.0, sunVelocityY = 0.0;
 double earthVelocityX = 0.0, earthVelocityY = 2*3.1415;
-double jupiterVelocityX = 0.0, jupiterVelocityY = 0.876897*3.1415;
+double jupiterVelocityX = 0.0, jupiterVelocityY = -0.876897*3.1415;
 
 // Duration for length of simulation
 double duration = 11.7;
@@ -54,5 +54,5 @@ void main()
     systemOfInterest.VerletMethod();
 
     // Plot the data after running 
-    system("gnuplot -persistent plot.gp");
+    // system("gnuplot -persistent plot.gp");
 }

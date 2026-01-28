@@ -16,11 +16,11 @@ stats 'resultsP3.txt' nooutput
 num_frames = STATS_records
 
 # 4. The Animation Loop
-do for [i=0:num_frames-1:10] {
+do for [i=0:num_frames-1:50] {
     
     # Calculate the start of the 5-point tail
     # If i is less than 5, we start at 0 to avoid errors
-    start_tail = (i < 50) ? 0 : i - 50
+    start_tail = (i < 200) ? 0 : i - 200
     
     set title sprintf("Timestep: %d", i)
     
