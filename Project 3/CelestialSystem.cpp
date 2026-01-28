@@ -103,7 +103,7 @@ void CelestialSystem::VerletMethod()
     for (int i = 0; i < size; i++)
     {
         CelestialObject& currentCelestialObject = celestialObjects[i];
-        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
+        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << "," << 0 << ",";
     }
 
     // End the line on the file
@@ -138,7 +138,7 @@ void CelestialSystem::VerletMethod()
         currentCelestialObject.SetRadiusY(currentY+currentVy*timeStep+0.5*currentAY*timeStep*timeStep);
 
         // Save new positions
-        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
+        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << "," << 0 << ",";
     }
 
     // Update time
@@ -178,7 +178,7 @@ void CelestialSystem::VerletMethod()
             currentCelestialObject.SetRadiusY(2*currentY-currentLastY+currentAY*timeStep*timeStep);
             
             // Save new positions
-            Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
+            Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << "," << 0 << ",";
         }
         // End the line on the file
         Position << time << endl;

@@ -26,9 +26,9 @@ do for [i=0:num_frames-1:50] {
     
     # Plotting multiple objects with the 'every' command
     # 'every ::start_tail::i' reads lines from start_tail to i
-    plot 'resultsP3.txt' every ::start_tail::i using 1:2 with linespoints pt 7 ps 0.5 lc rgb "yellow", \
-         ''              every ::start_tail::i using 3:4 with linespoints pt 7 ps 1.0 lc rgb "blue", \
-         ''              every ::start_tail::i using 5:6 with linespoints pt 7 ps 1.0 lc rgb "red"
+    splot 'resultsP3.txt' every ::start_tail::i using 1:2:3 with linespoints pt 7 ps 0.5 lc rgb "green", \
+         ''              every ::start_tail::i using 4:5:6 with linespoints pt 7 ps 1.0 lc rgb "blue", \
+         ''              every ::start_tail::i using 7:8:9 with linespoints pt 7 ps 1.0 lc rgb "red"
          
     # Adjust pause for speed (0.01 is fast, 0.1 is slow)
     # pause 0.01 # in seconds
