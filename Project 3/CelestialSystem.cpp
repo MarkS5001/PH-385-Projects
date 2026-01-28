@@ -35,7 +35,8 @@ using namespace CS;
 // }
 
 // Initialize parameters
-CelestialSystem::CelestialSystem(double TimeStep) : timeStep(TimeStep){};
+CelestialSystem::CelestialSystem(double TimeStep, double Duration, string Filename) : 
+                                timeStep(TimeStep), duration(Duration), filename(Filename){};
 
 // Method to add the various celestial bodies
 void CelestialSystem::AddCelestialObject(double mass, double radiusX, double radiusY, 
@@ -100,7 +101,94 @@ void CelestialSystem::TotalAcceleration()
 }
 
 // Method to calculate the position
-void CelestialSystem::VerletMethod(double TimeStep)
-{
+void CelestialSystem::VerletMethod()
+{    
+    // Get size to loop through all objects
+    int size = celestialObjects.size();
 
+    // Initialize file handling
+    ofstream Position(filename);
+
+    // Save initial positions to the file
+    for (int i = 0; i < size; i++)
+    {
+        CelestialObject currentCelestialObject = celestialObjects[i];
+        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusX() << ",";
+    }
+
+    // End the line on the file
+    Position << endl;
+
+    // Loop for first Verlet step
+    for (int i = 0; i < size; i++)
+    {
+        // Work one object at a time
+        CelestialObject currentCelestialObject = celestialObjects[i];
+
+        // Unpack needed variables
+        double currentX = currentCelestialObject.GetRadiusX();
+        double currentY = currentCelestialObject.GetRadiusY();
+
+        double currentVx = currentCelestialObject.GetVelocityX();
+        double currentVy = currentCelestialObject.GetVelocityY();
+
+        // Calculate and unpack acceleration
+        CelestialSystem::TotalAcceleration();
+        double currentAX = currentCelestialObject.GetAccelerationX();
+        double currentAY = currentCelestialObject.GetAccelerationY();
+
+
+        // Update the position
+        currentCelestialObject.SetLastRadiusX(currentX);
+        currentCelestialObject.SetLastRadiusY(currentY);
+
+        // Uses equation for first Verlet step
+        currentCelestialObject.SetRadiusX(currentX+currentVx*timeStep+0.5*currentAX*timeStep*timeStep);
+        currentCelestialObject.SetRadiusY(currentY+currentVy*timeStep+0.5*currentAY*timeStep*timeStep);
+
+        // Save new positions
+        Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusX() << ",";
+    }
+
+    // End the line on the file
+    Position << endl;
+
+    // Keeps track of condition for loop
+    double time = timeStep;
+
+    // Loop for second Varlet step
+    while (time < duration)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            // Work one object at a time
+            CelestialObject currentCelestialObject = celestialObjects[i];
+
+            // Unpack needed variables
+            double currentX = currentCelestialObject.GetRadiusX();
+            double currentY = currentCelestialObject.GetRadiusY();
+
+            double currentLastX = currentCelestialObject.GetLastRadiusX();
+            double currentLastY = currentCelestialObject.GetLastRadiusY();
+
+            // Calculate and unpack acceleration
+            CelestialSystem::TotalAcceleration();
+            double currentAX = currentCelestialObject.GetAccelerationX();
+            double currentAY = currentCelestialObject.GetAccelerationY();
+
+            // Update positions
+            currentCelestialObject.SetLastRadiusX(currentX);
+            currentCelestialObject.SetLastRadiusY(currentY);
+
+            // Uses equations for subseqent Verlet steps
+            currentCelestialObject.SetRadiusX(2*currentX-currentLastX+currentAX*timeStep*timeStep);
+            currentCelestialObject.SetRadiusY(2*currentY-currentLastY+currentAY*timeStep*timeStep);
+            
+            // Save new positions
+            Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusX() << ",";
+        }
+        // End the line on the file
+        Position << endl;
+    }    
+    Position.close();
 }

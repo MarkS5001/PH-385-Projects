@@ -17,16 +17,18 @@ namespace CS
     {
         private:
             double timeStep;
+            double duration;
+            std::string filename;
             double G = 4*3.1415*3.1415;
             std::vector<CelestialObject> celestialObjects;
 
         public:
             // CelestialSystem(int amount);
-            CelestialSystem(double TimeStep);
+            CelestialSystem(double TimeStep, double Duration, std::string Filename);
             void AddCelestialObject(double mass, double radiusX, double radiusY, 
                                     double velocityX, double velocityY);
             double AccelerationBetweenBodies(double mass, double distance);
             void TotalAcceleration();
-            void VerletMethod(double TimeStep);
+            void VerletMethod();
     };
 }
