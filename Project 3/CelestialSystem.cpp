@@ -174,6 +174,9 @@ void CelestialSystem::VerletMethod()
         }
         // End the line on the file
         Position << endl;
+
+        // Update time
+        time += timeStep;
     }    
     Position.close();
 }
