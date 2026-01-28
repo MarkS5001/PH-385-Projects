@@ -13,26 +13,11 @@ Date: 1/26/2026
 */
 
 #include "CelestialSystem.hpp"
-#include "CelestialObject.cpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
 using namespace std;
 using namespace CS;
-
-// CelestialSystem::CelestialSystem(int amount)
-// {
-//     for (int i = 0; i < amount; i++)
-//     {
-//         double mass;
-//         double radius;
-//         double velocity;
-
-//         CelestialObject currentCelestialObject(mass, radius, velocity);
-
-//         celestialObjects.push_back(currentCelestialObject);
-//     }
-// }
 
 // Initialize parameters
 CelestialSystem::CelestialSystem(double TimeStep, double Duration, string Filename) : 

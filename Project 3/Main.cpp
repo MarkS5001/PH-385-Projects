@@ -11,7 +11,9 @@ Author: Mark Smith (smi20046@byui.edu)
 Date: 1/26/2026
 */
 
-#include "CelestialSystem.hpp";
+#include <iostream>
+#include "CelestialSystem.cpp"
+#include "CelestialObject.cpp"
 
 using namespace CS;
 

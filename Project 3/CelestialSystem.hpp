@@ -9,7 +9,9 @@ Date: 1/26/2026
 
 #pragma once
 #include <vector>
-#include "CelestialObject.cpp"
+#include "CelestialObject.hpp"
+
+using namespace CO;
 
 namespace CS
 {
