@@ -72,8 +72,8 @@ void CelestialSystem::TotalAcceleration()
                 double ryI = interestedCelestialObject.GetRadiusY();
                 
                 // Distance between the bodies (sign does not matter as they will get squared)
-                double distanceX = rx - rxI;
-                double distanceY = ry - ryI;
+                double distanceX = rxI - rx;
+                double distanceY = ryI - ry;
                 double distanceMag = sqrt(distanceX*distanceX+distanceY*distanceY);
 
                 // Acceleration calculations
