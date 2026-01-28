@@ -1,23 +1,37 @@
-# Commas to separate the data
+set terminal gif animate delay 2 optimize
+set output 'solar_system.gif'
+
+# 1. Basic Formatting
 set datafile separator ","
+unset key              # Hides the legend for a cleaner look
+set grid
+set size square        # Keeps the orbits from looking like ovals
 
-# Labels for everything
-set title "Ping Pong Ball Trajectory"
-set xlabel "x (m)"
-set ylabel "y (m)"
-# set zlabel "z (m)"
+# 2. Set the Viewport (Adjust these to fit your orbital distances)
+set xrange [-10:10]
+set yrange [-10:10]
 
-# Adjust the view
-# set view 60, 30, 1, 1
-# set grid
+# 3. Find how many lines are in the file
+stats 'resultsP3.txt' nooutput
+num_frames = STATS_records
 
-# Handle the data
-# command "path" x:y:z connect_with_lines_(with lines) linewidth_(lw) #_for_linewidth line_color_(lc)
-plot "C:/Users/markb/OneDrive/College/BYUI/26 8 Winter/PH 385/PH-385-Projects/Project 3/resultsP3.txt" using 3:4 with lines lw 2 lc rgb "purple" title "Ball Path"
+# 4. The Animation Loop
+do for [i=0:num_frames-1:10] {
+    
+    # Calculate the start of the 5-point tail
+    # If i is less than 5, we start at 0 to avoid errors
+    start_tail = (i < 50) ? 0 : i - 50
+    
+    set title sprintf("Timestep: %d", i)
+    
+    # Plotting multiple objects with the 'every' command
+    # 'every ::start_tail::i' reads lines from start_tail to i
+    plot 'resultsP3.txt' every ::start_tail::i using 1:2 with linespoints pt 7 ps 0.5 lc rgb "yellow", \
+         ''              every ::start_tail::i using 3:4 with linespoints pt 7 ps 1.0 lc rgb "blue", \
+         ''              every ::start_tail::i using 5:6 with linespoints pt 7 ps 1.0 lc rgb "red"
+         
+    # Adjust pause for speed (0.01 is fast, 0.1 is slow)
+    # pause 0.01 # in seconds
+}
 
-# Save it
-set terminal png
-set output "resultsP3.png"
-
-# Keep the window open
-pause -1 "Press OK or Enter to close the plot"
+set output # This finalizes the file
