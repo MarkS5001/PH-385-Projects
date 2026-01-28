@@ -106,6 +106,9 @@ void CelestialSystem::VerletMethod()
     // End the line on the file
     Position << endl;
 
+    // Calculate initial acceleration
+    CelestialSystem::TotalAcceleration();
+
     // Loop for first Verlet step
     for (int i = 0; i < size; i++)
     {
@@ -119,11 +122,9 @@ void CelestialSystem::VerletMethod()
         double currentVx = currentCelestialObject.GetVelocityX();
         double currentVy = currentCelestialObject.GetVelocityY();
 
-        // Calculate and unpack acceleration
-        CelestialSystem::TotalAcceleration();
+        // unpack acceleration
         double currentAX = currentCelestialObject.GetAccelerationX();
         double currentAY = currentCelestialObject.GetAccelerationY();
-
 
         // Update the position
         currentCelestialObject.SetLastRadiusX(currentX);
@@ -146,6 +147,9 @@ void CelestialSystem::VerletMethod()
     // Loop for second Varlet step
     while (time < duration)
     {
+        // Calculate acceleration for current loop
+        CelestialSystem::TotalAcceleration();
+
         for (int i = 0; i < size; i++)
         {
             // Work one object at a time
@@ -158,8 +162,7 @@ void CelestialSystem::VerletMethod()
             double currentLastX = currentCelestialObject.GetLastRadiusX();
             double currentLastY = currentCelestialObject.GetLastRadiusY();
 
-            // Calculate and unpack acceleration
-            CelestialSystem::TotalAcceleration();
+            // unpack acceleration
             double currentAX = currentCelestialObject.GetAccelerationX();
             double currentAY = currentCelestialObject.GetAccelerationY();
 
