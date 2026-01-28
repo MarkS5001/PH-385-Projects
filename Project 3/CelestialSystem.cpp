@@ -48,7 +48,7 @@ void CelestialSystem::TotalAcceleration()
     for (int i = 1; i < size; i++)
     {
         // Current object unpacking
-        CelestialObject currentCelestialObject = celestialObjects[i];
+        CelestialObject& currentCelestialObject = celestialObjects[i];
         double mass = currentCelestialObject.GetMass();
         double rx = currentCelestialObject.GetRadiusX();
         double ry = currentCelestialObject.GetRadiusY();
@@ -74,10 +74,12 @@ void CelestialSystem::TotalAcceleration()
                 // Distance between the bodies (sign does not matter as they will get squared)
                 double distanceX = rx - rxI;
                 double distanceY = ry - ryI;
+                double distanceMag = sqrt(distanceX*distanceX+distanceY*distanceY);
 
                 // Acceleration calculations
-                accelerationX += AccelerationBetweenBodies(massI, distanceX);
-                accelerationY += AccelerationBetweenBodies(massI, distanceY);
+                double Acceleration = AccelerationBetweenBodies(massI, distanceMag);
+                accelerationX += Acceleration*distanceX/distanceMag;
+                accelerationY += Acceleration*distanceY/distanceMag;
             }
         }
         currentCelestialObject.SetAccelerationX(accelerationX);
@@ -97,7 +99,7 @@ void CelestialSystem::VerletMethod()
     // Save initial positions to the file
     for (int i = 0; i < size; i++)
     {
-        CelestialObject currentCelestialObject = celestialObjects[i];
+        CelestialObject& currentCelestialObject = celestialObjects[i];
         Position << currentCelestialObject.GetRadiusX() << "," << currentCelestialObject.GetRadiusY() << ",";
     }
 
@@ -108,7 +110,7 @@ void CelestialSystem::VerletMethod()
     for (int i = 0; i < size; i++)
     {
         // Work one object at a time
-        CelestialObject currentCelestialObject = celestialObjects[i];
+        CelestialObject& currentCelestialObject = celestialObjects[i];
 
         // Unpack needed variables
         double currentX = currentCelestialObject.GetRadiusX();
@@ -147,7 +149,7 @@ void CelestialSystem::VerletMethod()
         for (int i = 0; i < size; i++)
         {
             // Work one object at a time
-            CelestialObject currentCelestialObject = celestialObjects[i];
+            CelestialObject& currentCelestialObject = celestialObjects[i];
 
             // Unpack needed variables
             double currentX = currentCelestialObject.GetRadiusX();
