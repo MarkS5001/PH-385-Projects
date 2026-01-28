@@ -37,7 +37,7 @@ void CelestialObject::SetRadiusX(double RadiusX)
 
 void CelestialObject::SetRadiusY(double RadiusY)
 {
-    radius[2] = RadiusY;
+    radius[1] = RadiusY;
 }
 
 void CelestialObject::SetLastRadiusX(double RadiusX)
@@ -47,7 +47,7 @@ void CelestialObject::SetLastRadiusX(double RadiusX)
 
 void CelestialObject::SetLastRadiusY(double RadiusY)
 {
-    lastRadius[2] = RadiusY;
+    lastRadius[1] = RadiusY;
 }
 
 void CelestialObject::SetVelocityX(double VelocityX)
