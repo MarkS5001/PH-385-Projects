@@ -45,7 +45,7 @@ void CelestialSystem::TotalAcceleration()
     int size = celestialObjects.size();
 
     // Loop to calculate acceleration for each object
-    for (int i = 1; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         // Current object unpacking
         CelestialObject& currentCelestialObject = celestialObjects[i];
