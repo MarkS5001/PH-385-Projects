@@ -17,6 +17,7 @@ namespace CO
         private:
             double mass;
             double radius[2];
+            double lastRadius[2];
             double velocity[2];
             double acceleration[2];
 
@@ -29,6 +30,8 @@ namespace CO
             void SetMass(double Mass);
             void SetRadiusX(double RadiusX);
             void SetRadiusY(double RadiusY);
+            void SetLastRadiusX(double lastRadiusX);
+            void SetLastRadiusY(double lastRadiusY);
             void SetVelocityX(double VelocityX);
             void SetVelocityY(double VelocityY);
             void SetAccelerationX(double AccelerationX);
@@ -38,6 +41,8 @@ namespace CO
             double GetMass();
             double GetRadiusX();
             double GetRadiusY();
+            double GetLastRadiusX();
+            double GetLastRadiusY();
             double GetVelocityX();
             double GetVelocityY();
             double GetAccelerationX();

@@ -24,7 +24,7 @@ CelestialObject::CelestialObject(const double Mass, const double RadiusX, const 
     velocity[1] = VelocityY;
 };
 
-// The following seven methods set the parameters the celestial object can hold
+// The following nine methods set the parameters the celestial object can hold
 void CelestialObject::SetMass(double Mass)
 {
     mass = Mass;
@@ -38,6 +38,16 @@ void CelestialObject::SetRadiusX(double RadiusX)
 void CelestialObject::SetRadiusY(double RadiusY)
 {
     radius[2] = RadiusY;
+};
+
+void CelestialObject::SetLastRadiusX(double RadiusX)
+{
+    lastRadius[0] = RadiusX;
+};
+
+void CelestialObject::SetLastRadiusY(double RadiusY)
+{
+    lastRadius[2] = RadiusY;
 };
 
 void CelestialObject::SetVelocityX(double VelocityX)
@@ -60,7 +70,7 @@ void CelestialObject::SetAccelerationY(double AccelerationY)
     acceleration[1] = AccelerationY;
 };
 
-// The following seven methods get the parameters the celestial object can hold
+// The following nine methods get the parameters the celestial object can hold
 double CelestialObject::GetMass()
 {
     return mass;
@@ -74,6 +84,16 @@ double CelestialObject::GetRadiusX()
 double CelestialObject::GetRadiusY()
 {
     return radius[1];
+};
+
+double CelestialObject::GetLastRadiusX()
+{
+    return lastRadius[0];
+};
+
+double CelestialObject::GetLastRadiusY()
+{
+    return lastRadius[1];
 };
 
 double CelestialObject::GetVelocityX()
