@@ -1,5 +1,5 @@
 set terminal gif animate delay 2 optimize
-set output 'solar_system.gif'
+set output 'solar_system_3D.gif'
 
 # 1. Basic Formatting
 set datafile separator ","
@@ -10,6 +10,10 @@ set size square        # Keeps the orbits from looking like ovals
 # 2. Set the Viewport (Adjust these to fit your orbital distances)
 set xrange [-10:10]
 set yrange [-10:10]
+
+# Adjust the view
+set view 45, 45, 1, 1
+set grid
 
 # 3. Find how many lines are in the file
 stats 'resultsP3.txt' nooutput
