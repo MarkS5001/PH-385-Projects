@@ -41,7 +41,7 @@ double timeStep = 0.0003;
 // Set filename
 std::string filename = "resultsP3.txt";
 
-void main()
+int main()
 {
     // Initialize system
     CelestialSystem systemOfInterest(timeStep, duration, filename);
@@ -55,4 +55,6 @@ void main()
 
     // Plot the data after running 
     // system("gnuplot -persistent plot.gp");
+
+    return 0;
 }
