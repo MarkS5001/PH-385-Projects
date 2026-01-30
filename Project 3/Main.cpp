@@ -20,7 +20,7 @@ using namespace CS;
 // Masses of interested objects
 double sunMass = 1;
 double earthMass = 3.0027e-6;
-double jupiterMass = 9.54588e-4*1000.0;
+double jupiterMass = 9.54588e-4;
 
 // Initial positions of interested objects
 double sunRadiusX = 0.0, sunRadiusY = 0.0;
@@ -39,19 +39,41 @@ double duration = 11.7;
 double timeStep = 0.0003;
 
 // Set filename
-std::string filename = "resultsP3.txt";
+std::string filename1 = "resultsP3_1.txt";
+std::string filename100 = "resultsP3_100.txt";
+std::string filename1000 = "resultsP3_1000.txt";
 
 int main()
 {
-    // Initialize system
-    CelestialSystem systemOfInterest(timeStep, duration, filename);
+    // Initialize system for jupiter mass normal
+    CelestialSystem systemOfInterest1(timeStep, duration, filename1);
 
     // Add the objects of the system
-    systemOfInterest.AddCelestialObject(sunMass, sunRadiusX, sunRadiusY, sunVelocityX, sunVelocityY);
-    systemOfInterest.AddCelestialObject(earthMass, earthRadiusX, earthRadiusY, earthVelocityX, earthVelocityY);
-    systemOfInterest.AddCelestialObject(jupiterMass, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
+    systemOfInterest1.AddCelestialObject(sunMass, sunRadiusX, sunRadiusY, sunVelocityX, sunVelocityY);
+    systemOfInterest1.AddCelestialObject(earthMass, earthRadiusX, earthRadiusY, earthVelocityX, earthVelocityY);
+    systemOfInterest1.AddCelestialObject(jupiterMass, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
 
-    systemOfInterest.VerletMethod();
+    systemOfInterest1.VerletMethod();
+
+    // Initialize system for jupiter mass 100 times normal
+    CelestialSystem systemOfInterest100(timeStep, duration, filename100);
+
+    // Add the objects of the system
+    systemOfInterest100.AddCelestialObject(sunMass, sunRadiusX, sunRadiusY, sunVelocityX, sunVelocityY);
+    systemOfInterest100.AddCelestialObject(earthMass, earthRadiusX, earthRadiusY, earthVelocityX, earthVelocityY);
+    systemOfInterest100.AddCelestialObject(jupiterMass*100.0, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
+
+    systemOfInterest100.VerletMethod();
+
+    // Initialize system for jupiter mass 1000 times normal
+    CelestialSystem systemOfInterest1000(timeStep, duration, filename1000);
+
+    // Add the objects of the system
+    systemOfInterest1000.AddCelestialObject(sunMass, sunRadiusX, sunRadiusY, sunVelocityX, sunVelocityY);
+    systemOfInterest1000.AddCelestialObject(earthMass, earthRadiusX, earthRadiusY, earthVelocityX, earthVelocityY);
+    systemOfInterest1000.AddCelestialObject(jupiterMass*1000.0, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
+
+    systemOfInterest1000.VerletMethod();
 
     // Plot the data after running 
     // system("gnuplot -persistent plot.gp");

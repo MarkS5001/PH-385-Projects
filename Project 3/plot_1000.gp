@@ -1,5 +1,5 @@
 set terminal gif animate delay 2 optimize
-set output 'solar_system_3D.gif'
+set output 'solar_system_3D_1000.gif'
 
 # 1. Basic Formatting
 set datafile separator ","
@@ -16,7 +16,7 @@ set view 45, 45, 1, 1
 set grid
 
 # 3. Find how many lines are in the file
-stats 'resultsP3.txt' nooutput
+stats 'resultsP3_1000.txt' nooutput
 num_frames = STATS_records
 
 # 4. The Animation Loop
