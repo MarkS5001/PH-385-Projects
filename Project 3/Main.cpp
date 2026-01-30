@@ -40,6 +40,7 @@ double timeStep = 0.0003;
 
 // Set filename
 std::string filename1 = "resultsP3_1.txt";
+std::string filename10 = "resultsP3_10.txt";
 std::string filename100 = "resultsP3_100.txt";
 std::string filename1000 = "resultsP3_1000.txt";
 
@@ -54,6 +55,16 @@ int main()
     systemOfInterest1.AddCelestialObject(jupiterMass, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
 
     systemOfInterest1.VerletMethod();
+
+    // Initialize system for jupiter mass 10 times normal
+    CelestialSystem systemOfInterest10(timeStep, duration, filename10);
+
+    // Add the objects of the system
+    systemOfInterest10.AddCelestialObject(sunMass, sunRadiusX, sunRadiusY, sunVelocityX, sunVelocityY);
+    systemOfInterest10.AddCelestialObject(earthMass, earthRadiusX, earthRadiusY, earthVelocityX, earthVelocityY);
+    systemOfInterest10.AddCelestialObject(jupiterMass*10.0, jupiterRadiusX, jupiterRadiusY, jupiterVelocityX, jupiterVelocityY);
+
+    systemOfInterest10.VerletMethod();
 
     // Initialize system for jupiter mass 100 times normal
     CelestialSystem systemOfInterest100(timeStep, duration, filename100);
