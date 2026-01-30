@@ -32,5 +32,10 @@ namespace CS
             double AccelerationBetweenBodies(double mass, double distance);
             void TotalAcceleration();
             void VerletMethod();
+            double CenterOfMassX();
+            double CenterOfMassY();
+            double VelocityOfCenterOfMassX();
+            double VelocityOfCenterOfMassY();
+            void CalculateCenterOfMassCorrection();
     };
 }

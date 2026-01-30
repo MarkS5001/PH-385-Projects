@@ -99,6 +99,9 @@ void CelestialSystem::VerletMethod()
     // Keeps track of condition for loop
     double time = timeStep;
 
+    // Calculate to make the momentum 0
+    CelestialSystem::CalculateCenterOfMassCorrection();
+
     // Save initial positions to the file
     for (int i = 0; i < size; i++)
     {
@@ -187,4 +190,118 @@ void CelestialSystem::VerletMethod()
         time += timeStep;
     }    
     Position.close();
+}
+
+double CelestialSystem::CenterOfMassX()
+{
+    // Get size for loop
+    int size = celestialObjects.size();
+
+    double numerator = 0;
+    double totalMass = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        // Current object unpacking
+        CelestialObject& currentCelestialObject = celestialObjects[i];
+        double mass = currentCelestialObject.GetMass();
+        double rx = currentCelestialObject.GetRadiusX();
+
+        numerator += mass*rx;
+        totalMass += mass;
+    }
+
+    return numerator/totalMass;
+}
+
+double CelestialSystem::CenterOfMassY()
+{
+    // Get size for loop
+    int size = celestialObjects.size();
+
+    double numerator = 0;
+    double totalMass = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        // Current object unpacking
+        CelestialObject& currentCelestialObject = celestialObjects[i];
+        double mass = currentCelestialObject.GetMass();
+        double rx = currentCelestialObject.GetRadiusY();
+
+        numerator += mass*rx;
+        totalMass += mass;
+    }
+
+    return numerator/totalMass;
+}
+
+double CelestialSystem::VelocityOfCenterOfMassX()
+{
+    // Get size for loop
+    int size = celestialObjects.size();
+
+    double numerator = 0;
+    double totalMass = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        // Current object unpacking
+        CelestialObject& currentCelestialObject = celestialObjects[i];
+        double mass = currentCelestialObject.GetMass();
+        double vx = currentCelestialObject.GetVelocityX();
+
+        numerator += mass*vx;
+        totalMass += mass;
+    }
+
+    return numerator/totalMass;
+}
+
+double CelestialSystem::VelocityOfCenterOfMassY()
+{
+    // Get size for loop
+    int size = celestialObjects.size();
+
+    double numerator = 0;
+    double totalMass = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        // Current object unpacking
+        CelestialObject& currentCelestialObject = celestialObjects[i];
+        double mass = currentCelestialObject.GetMass();
+        double vx = currentCelestialObject.GetVelocityY();
+
+        numerator += mass*vx;
+        totalMass += mass;
+    }
+
+    return numerator/totalMass;
+}
+
+void CelestialSystem::CalculateCenterOfMassCorrection()
+{
+    // Size to loop over
+    double size = celestialObjects.size();
+
+    // Unpack needed variables
+    double crx = CelestialSystem::CenterOfMassX();
+    double cry = CelestialSystem::CenterOfMassY();
+    double cvx = CelestialSystem::VelocityOfCenterOfMassX();
+    double cvy = CelestialSystem::VelocityOfCenterOfMassY();
+
+    for (int i = 0; i < size; i++)
+    {
+        CelestialObject& currentCelestialObject = celestialObjects[i];
+        double rx = currentCelestialObject.GetRadiusX();
+        double ry = currentCelestialObject.GetRadiusY();
+        double vx = currentCelestialObject.GetVelocityX();
+        double vy = currentCelestialObject.GetVelocityY();
+
+        currentCelestialObject.SetRadiusX(rx-crx);
+        currentCelestialObject.SetRadiusY(ry-cry);
+        currentCelestialObject.SetVelocityX(vx-cvx);
+        currentCelestialObject.SetVelocityY(vy-cvy);
+    }    
 }
