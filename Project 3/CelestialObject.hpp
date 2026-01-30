@@ -4,7 +4,7 @@ Header file for CelestialObject class
 Creates an outline of what the CelestialObject class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/26/2026
+Date: 1/30/2026
 */
 
 #pragma once

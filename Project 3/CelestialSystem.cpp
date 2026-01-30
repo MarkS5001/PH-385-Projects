@@ -1,15 +1,14 @@
 /*
 Class CelestialSystem
 
-Simulates the motion of a multi-body system. Assumes the first object in system is stationary.
+Simulates the motion of a multi-body system.
 
-This code has limitations in the form of time step. With the use of Euler's
-method, h (the time step) squared terms are neglected, and these terms will add up.
-You can also decrease the time step to decrease the error, however the number
-of steps needed will increase if a user does this.
+This code has limitations in the form of time step. The objects can come close together,
+which means the velocity can become huge. So the velocity can change faster than 
+the time step can allow for.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/26/2026
+Date: 1/30/2026
 */
 
 #include "CelestialSystem.hpp"

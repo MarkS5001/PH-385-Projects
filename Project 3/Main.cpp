@@ -3,12 +3,12 @@ PH 385 Project 3 Main File
 
 Models the motion of a three body gravitational system.
 
-The user inputs the mass of the ball, diameter of the ball, air density, drag
-coefficient, initial position, initial velocity, spin angular velocity,
-and time step, all in SI units. This is followed by an output file name.
+The user inputs the mass of the objects, their distance (x and y), their velocity (x and y),
+duration (in years), and time step (in years), unless otherwise noted all in SI units. 
+This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 1/26/2026
+Date: 1/30/2026
 */
 
 #include <iostream>
