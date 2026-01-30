@@ -70,7 +70,7 @@ void CelestialSystem::TotalAcceleration()
                 double rxI = interestedCelestialObject.GetRadiusX();
                 double ryI = interestedCelestialObject.GetRadiusY();
                 
-                // Distance between the bodies (sign does not matter as they will get squared)
+                // Distance between the bodies
                 double distanceX = rxI - rx;
                 double distanceY = ryI - ry;
                 double distanceMag = sqrt(distanceX*distanceX+distanceY*distanceY);
@@ -98,7 +98,7 @@ void CelestialSystem::VerletMethod()
     // Keeps track of condition for loop
     double time = timeStep;
 
-    // Calculate to make the momentum 0
+    // Calculate to make the total momentum zero
     CelestialSystem::CalculateCenterOfMassCorrection();
 
     // Save initial positions to the file

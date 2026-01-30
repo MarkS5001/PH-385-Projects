@@ -21,14 +21,16 @@ namespace CS
             double timeStep;
             double duration;
             std::string filename;
-            double G = 4*3.1415*3.1415;
+            double G = 4*3.1415*3.1415; // Universal gravitation constant
             std::vector<CelestialObject> celestialObjects;
 
         public:
-            // CelestialSystem(int amount);
-            CelestialSystem(double TimeStep, double Duration, std::string Filename);
+            CelestialSystem(double TimeStep, double Duration, std::string Filename); // Constructor
+            
             void AddCelestialObject(double mass, double radiusX, double radiusY, 
                                     double velocityX, double velocityY);
+                                    
+            // Methods to update object movement
             double AccelerationBetweenBodies(double mass, double distance);
             void TotalAcceleration();
             void VerletMethod();
