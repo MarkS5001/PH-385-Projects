@@ -20,7 +20,7 @@ using namespace CS;
 // Masses of interested objects
 double sunMass = 1;
 double earthMass = 3.0027e-6;
-double jupiterMass = 9.54588e-4;
+double jupiterMass = 9.54588e-4*1000.0;
 
 // Initial positions of interested objects
 double sunRadiusX = 0.0, sunRadiusY = 0.0;
