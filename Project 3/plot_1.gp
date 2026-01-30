@@ -30,7 +30,7 @@ do for [i=0:num_frames-1:50] {
     
     # Plotting multiple objects with the 'every' command
     # 'every ::start_tail::i' reads lines from start_tail to i
-    splot 'resultsP3.txt' every ::start_tail::i using 1:2:3 with linespoints pt 7 ps 0.5 lc rgb "green", \
+    splot 'resultsP3_1.txt' every ::start_tail::i using 1:2:3 with linespoints pt 7 ps 0.5 lc rgb "green", \
          ''              every ::start_tail::i using 4:5:6 with linespoints pt 7 ps 1.0 lc rgb "blue", \
          ''              every ::start_tail::i using 7:8:9 with linespoints pt 7 ps 1.0 lc rgb "red"
          

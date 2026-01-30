@@ -8,8 +8,8 @@ set grid
 set size square        # Keeps the orbits from looking like ovals
 
 # 2. Set the Viewport (Adjust these to fit your orbital distances)
-set xrange [-10:10]
-set yrange [-10:10]
+set xrange [-7:7]
+set yrange [-7:7]
 
 # Adjust the view
 set view 45, 45, 1, 1
@@ -30,7 +30,7 @@ do for [i=0:num_frames-1:50] {
     
     # Plotting multiple objects with the 'every' command
     # 'every ::start_tail::i' reads lines from start_tail to i
-    splot 'resultsP3.txt' every ::start_tail::i using 1:2:3 with linespoints pt 7 ps 0.5 lc rgb "green", \
+    splot 'resultsP3_1000.txt' every ::start_tail::i using 1:2:3 with linespoints pt 7 ps 0.5 lc rgb "green", \
          ''              every ::start_tail::i using 4:5:6 with linespoints pt 7 ps 1.0 lc rgb "blue", \
          ''              every ::start_tail::i using 7:8:9 with linespoints pt 7 ps 1.0 lc rgb "red"
          
