@@ -12,6 +12,7 @@ Date: 1/30/2026
 */
 
 #include <iostream>
+#include <ctime>
 #include "CelestialSystem.cpp"
 #include "CelestialObject.cpp"
 
@@ -46,6 +47,8 @@ std::string filename1000 = "resultsP3_1000.txt";
 
 int main()
 {
+    clock_t start = clock(); // Get program start time
+
     // Initialize system for jupiter mass normal
     CelestialSystem systemOfInterest1(timeStep, duration, filename1);
 
@@ -88,6 +91,9 @@ int main()
 
     // Plot the data after running 
     // system("gnuplot -persistent plot.gp");
+
+    time_t end = clock();// Get program start time
+    std::cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
 
     return 0;
 }
