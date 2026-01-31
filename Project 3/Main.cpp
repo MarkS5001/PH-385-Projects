@@ -11,6 +11,8 @@ Author: Mark Smith (smi20046@byui.edu)
 Date: 1/30/2026
 */
 
+// Windows 11 did 4s, Fedora Workstation 43 did 2s, and Ubuntu 24 did 0s
+
 #include <iostream>
 #include <ctime>
 #include "CelestialSystem.cpp"
