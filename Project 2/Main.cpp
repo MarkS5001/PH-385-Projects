@@ -41,7 +41,7 @@ string filename;
 // double drivingFrequency = 2.0/3.0;
 // string filename = "resultsP2.txt";
 
-void main()
+int main()
 {
     // Get the user input
 
@@ -91,4 +91,6 @@ void main()
     
     // Plot the data after running 
     // system("gnuplot -persistent plot.gp");
+
+    return 0;
 }

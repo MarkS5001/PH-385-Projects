@@ -40,7 +40,7 @@ string filename;
 // double time_step = 0.001;
 // string filename = "resultsP1.txt";
 
-void main(){
+int main(){
     // Get the user input
 
     cout << "What is the mass of the ball in kg? ";
@@ -104,4 +104,6 @@ void main(){
 
     // Plot the data after running 
     // system("gnuplot -persistent PingPong_Plot.gp");
+
+    return 0;
 }
