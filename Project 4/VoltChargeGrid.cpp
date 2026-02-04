@@ -151,11 +151,11 @@ void VoltChargeGrid::Relaxation()
     {
         if (D3)
         {
-            for (int z = 1; z < gridSize; z++)
+            for (int z = 1; z < gridSize-2; z++)
             {
-                for (int y = 1; y < gridSize; y++)
+                for (int y = 1; y < gridSize-2; y++)
                 {
-                    for (int x = 1; x < gridSize; x++)
+                    for (int x = 1; x < gridSize-2; x++)
                     {
                         // Change origin from problem to code for the six spaces surrounding point charge
                         int icr = ChangeIndex(x,y,z);
@@ -177,9 +177,9 @@ void VoltChargeGrid::Relaxation()
         }
         else
         {
-            for (int y = 1; y < gridSize; y++)
+            for (int y = 1; y < gridSize-2; y++)
             {
-                for (int x = 1; x < gridSize; x++)
+                for (int x = 1; x < gridSize-2; x++)
                 {
                     // Change origin from problem to code for the six spaces surrounding point charge
                     int icr = ChangeIndex(x,y,0);
