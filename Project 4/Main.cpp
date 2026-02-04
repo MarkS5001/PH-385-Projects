@@ -36,7 +36,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize class
-    VoltChargeGrid grid(iterations, false, filename);
+    VoltChargeGrid grid(iterations, true, filename);
 
     // Add charges
     grid.AddPointCharge(charge1, rx1, ry1, rz);
@@ -46,7 +46,7 @@ int main()
     grid.AddChargeGrid();
 
     // Add surface voltages
-    grid.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 1);
+    grid.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 0);
     grid.AddVoltageCircleGrid();
 
     // Run simulation
