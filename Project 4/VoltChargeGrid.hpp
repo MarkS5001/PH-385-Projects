@@ -19,7 +19,7 @@ namespace VCG
         private:
             double gridSpacing = 2.5;
             int gridSize = 40;
-            // double offset = (gridSize*gridSpacing)/2.0;
+            int offset = gridSize/2;
             double k = 8.99e9; // Coulomb's constant (SI)
             // int numberOfPointCharges = 0;
             // int numberOfVoltageCircles = 0;
@@ -34,7 +34,7 @@ namespace VCG
             std::vector<double> grid; // Grid
 
         public:
-            VoltChargeGrid(int NumberOfIterations, bool DD3, std::string Filename, int GridSize);
+            VoltChargeGrid(int NumberOfIterations, bool DD3, std::string Filename);
             void AddPointCharge(double q, int rx, int ry, int rz);
             void AddChargeGrid();
             void AddVoltageCircle(double V, int rx, int ry, int rz, int radius, int D2);

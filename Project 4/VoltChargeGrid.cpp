@@ -20,9 +20,9 @@ using namespace std;
 using namespace VCG;
 
 // Give initial parameters
-VoltChargeGrid::VoltChargeGrid(int NumberOfIterations, bool DD3, std::string Filename, int GridSize) : 
+VoltChargeGrid::VoltChargeGrid(int NumberOfIterations, bool DD3, std::string Filename) : 
                                 numberOfIterations(NumberOfIterations), D3(DD3), filename(Filename), 
-                                grid(GridSize*GridSize*GridSize, 0.0)
+                                grid(gridSize*gridSize*gridSize, 0.0)
 {};
 
 // Add point charge to list
@@ -97,13 +97,15 @@ void VoltChargeGrid::AddVoltageCircleGrid()
             // Change origin from problem to code
             int ir = ChangeIndex(rx, ry, 0);
 
-            for (int y = 0; y <= gridSize; y++)
+            for (int y = 0; y < gridSize; y++)
             {
-                for (int x = 0; x <= gridSize; x++)
+                for (int x = 0; x < gridSize; x++)
                 {
-                    if (sqrt((y-ry)*(y-ry)+(x-rx)*(x-rx))*gridSpacing <= radius)
+                    double gx = x-offset;
+                    double gy = y-offset;
+                    if (sqrt((gy-ry)*(gy-ry)+(gx-rx)*(gx-rx))*gridSpacing <= radius)
                     {
-                        int icr = ChangeIndex(x, y, 0); // Get index for current point
+                        int icr = ChangeIndex(gx, gy, 0); // Get index for current point
                         grid[icr] = V;
                     }
                 }
@@ -114,15 +116,19 @@ void VoltChargeGrid::AddVoltageCircleGrid()
             // Change origin from problem to code
             int ir = ChangeIndex(rx, ry, rz);
 
-            for (int z = 0; z <= gridSize; z++)
+            for (int z = 0; z < gridSize; z++)
             {
-                for (int y = 0; y <= gridSize; y++)
+                for (int y = 0; y < gridSize; y++)
                 {
-                    for (int x = 0; x <= gridSize; x++)
-                    {                        
-                        if (sqrt((z-rz)*(z-rz)+(y-ry)*(y-ry)+(x-rx)*(x-rx))*gridSpacing <= radius)
+                    for (int x = 0; x < gridSize; x++)
+                    {              
+                        double gx = x-offset;
+                        double gy = y-offset;
+                        double gz = z-offset;
+
+                        if (sqrt((gz-rz)*(gz-rz)+(gy-ry)*(gy-ry)+(gx-rx)*(gx-rx))*gridSpacing <= radius)
                         {
-                            int icr = ChangeIndex(x, y, z); // Get index for current point
+                            int icr = ChangeIndex(gx, gy, gz); // Get index for current point
                             grid[icr] = V;
                         }
                     }
@@ -141,21 +147,36 @@ double VoltChargeGrid::VoltageFromPointCharge(double q, double r)
 // Finds the index value from having the origin in the center of the cube
 int VoltChargeGrid::ChangeIndex(int x, int y, int z)
 {
-    return x*gridSize*gridSize+y*gridSize+z;
+    // Shift from physics-space (center origin) to array-space (corner origin)
+    int offset = gridSize / 2;
+    int arrayX = x + offset;
+    int arrayY = y + offset;
+    int arrayZ = z + offset;
+
+    // Safety check: If a calculation lands outside the box, 
+    // we clamp it or return a safe 'boundary' index to prevent a Segfault.
+    if (arrayX < 0) arrayX = 0; if (arrayX >= gridSize) arrayX = gridSize - 1;
+    if (arrayY < 0) arrayY = 0; if (arrayY >= gridSize) arrayY = gridSize - 1;
+    if (arrayZ < 0) arrayZ = 0; if (arrayZ >= gridSize) arrayZ = gridSize - 1;
+
+    return arrayX * gridSize * gridSize + arrayY * gridSize + arrayZ;
 }
 
 // Method to calculate the voltage from the grid
 void VoltChargeGrid::Relaxation()
 {
+    int start = -(offset-1);
+    int end = offset;
+
     for (int i = 0; i < numberOfIterations; i++)
     {
         if (D3)
         {
-            for (int z = 1; z < gridSize-2; z++)
+            for (int z = start; z < end; z++)
             {
-                for (int y = 1; y < gridSize-2; y++)
+                for (int y = start; y < end; y++)
                 {
-                    for (int x = 1; x < gridSize-2; x++)
+                    for (int x = start; x < end; x++)
                     {
                         // Change origin from problem to code for the six spaces surrounding point charge
                         int icr = ChangeIndex(x,y,z);
@@ -166,20 +187,20 @@ void VoltChargeGrid::Relaxation()
                         int ir5 = ChangeIndex(x,y,z+1);
                         int ir6 = ChangeIndex(x,y,z-1);
 
-                        grid[icr] = 1/6*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]+grid[ir5]+grid[ir6]);
+                        grid[icr] = 1.0/6.0*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]+grid[ir5]+grid[ir6]);
                     }
                 }
 
                 // Keep point charges and surface voltages
-                // VoltChargeGrid::AddChargeGrid();
+                VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();
             }
         }
         else
         {
-            for (int y = 1; y < gridSize-2; y++)
+            for (int y = start; y < end; y++)
             {
-                for (int x = 1; x < gridSize-2; x++)
+                for (int x = start; x < end; x++)
                 {
                     // Change origin from problem to code for the six spaces surrounding point charge
                     int icr = ChangeIndex(x,y,0);
@@ -188,15 +209,16 @@ void VoltChargeGrid::Relaxation()
                     int ir3 = ChangeIndex(x,y+1,0);
                     int ir4 = ChangeIndex(x,y-1,0);
 
-                    grid[icr] = 1/4*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]);
+                    grid[icr] = 1.0/4.0*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]);
                 }
 
                 // Keep point charges and surface voltages
-                // VoltChargeGrid::AddChargeGrid();
+                VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();
             }
         }
     }
+    VoltChargeGrid::SaveResults();
 }
 
 void VoltChargeGrid::SaveResults()
@@ -210,9 +232,9 @@ void VoltChargeGrid::SaveResults()
         {
             for (int x = 0; x < gridSize; x++) 
             {
-                int icr = ChangeIndex(x,y,z);
+                int icr = x*gridSize*gridSize+y*gridSize+z;
                 // Write: x y z value
-                voltage << x << " " << y << " " << z << " " << grid[icr] << "\n";
+                voltage << x-offset << " " << y-offset << " " << z-offset << " " << grid[icr] << "\n";
             }
             
             // One blank line after each "row" in a slice
