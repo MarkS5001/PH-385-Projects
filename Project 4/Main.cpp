@@ -27,6 +27,7 @@ int radius = 10; // Radius of disk of voltage
 int voltCirclePosition = 0; // Position of center of voltage disk
 double voltCircleVoltage = 0.25; // Voltage of disk in V
 int rz = 0; // Position of all z components
+int iterations = 100;
 
 string filename = "resultsP4.txt";
 
@@ -35,7 +36,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize class
-    VoltChargeGrid grid(10, false, filename);
+    VoltChargeGrid grid(iterations, false, filename);
 
     // Add charges
     grid.AddPointCharge(charge1, rx1, ry1, rz);
