@@ -40,9 +40,9 @@ void VoltChargeGrid::AddChargeGrid()
         array<int, 3> charge = pointCharges[i];
 
         // Unpack the charge
-        int x = charge[1];
-        int y = charge[2];
-        int z = charge[3];
+        int x = charge[0];
+        int y = charge[1];
+        int z = charge[2];
 
         // Get charge
         double q = pointChargesCharge[i];
@@ -83,11 +83,11 @@ void VoltChargeGrid::AddVoltageCircleGrid()
         array<int, 5> voltCircle = voltageCircles[i];
 
         // Unpack the circle
-        int rx = voltCircle[1];
-        int ry = voltCircle[2];
-        int rz = voltCircle[3];
-        int radius = voltCircle[4];
-        int D2 = voltCircle[5];
+        int rx = voltCircle[0];
+        int ry = voltCircle[1];
+        int rz = voltCircle[2];
+        int radius = voltCircle[3];
+        int D2 = voltCircle[4];
 
         // Get voltage of the circle
         double V = voltageCirclesVoltage[i];
@@ -171,7 +171,7 @@ void VoltChargeGrid::Relaxation()
                 }
 
                 // Keep point charges and surface voltages
-                VoltChargeGrid::AddChargeGrid();
+                // VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();
             }
         }
@@ -192,7 +192,7 @@ void VoltChargeGrid::Relaxation()
                 }
 
                 // Keep point charges and surface voltages
-                VoltChargeGrid::AddChargeGrid();
+                // VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();
             }
         }

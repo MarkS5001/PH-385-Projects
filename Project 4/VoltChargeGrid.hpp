@@ -41,6 +41,7 @@ namespace VCG
             void AddVoltageCircleGrid();
             double VoltageFromPointCharge(double q, double r);
             int ChangeIndex(int x, int y, int z);
+            // int ChageOrigin();
             void Relaxation();
             void SaveResults();
     };

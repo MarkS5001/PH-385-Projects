@@ -42,7 +42,7 @@ int main()
     grid.AddPointCharge(charge2, rx2, ry2, rz);
     grid.AddPointCharge(charge3, rx3, ry3, rz);
     grid.AddPointCharge(charge4, rx4, ry4, rz);
-    grid.AddChargeGrid();
+    // grid.AddChargeGrid();
 
     // Add surface voltages
     grid.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 1);
