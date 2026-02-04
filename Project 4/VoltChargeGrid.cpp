@@ -94,9 +94,6 @@ void VoltChargeGrid::AddVoltageCircleGrid()
 
         if (D2 != 0)
         {
-            // Change origin from problem to code
-            int ir = ChangeIndex(rx, ry, 0);
-
             for (int y = 0; y < gridSize; y++)
             {
                 for (int x = 0; x < gridSize; x++)
@@ -113,9 +110,6 @@ void VoltChargeGrid::AddVoltageCircleGrid()
         } 
         else
         {
-            // Change origin from problem to code
-            int ir = ChangeIndex(rx, ry, rz);
-
             for (int z = 0; z < gridSize; z++)
             {
                 for (int y = 0; y < gridSize; y++)
@@ -148,7 +142,6 @@ double VoltChargeGrid::VoltageFromPointCharge(double q, double r)
 int VoltChargeGrid::ChangeIndex(int x, int y, int z)
 {
     // Shift from physics-space (center origin) to array-space (corner origin)
-    int offset = gridSize / 2;
     int arrayX = x + offset;
     int arrayY = y + offset;
     int arrayZ = z + offset;
