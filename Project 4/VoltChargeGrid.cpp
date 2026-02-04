@@ -190,10 +190,6 @@ void VoltChargeGrid::Relaxation()
                         grid[icr] = 1.0/6.0*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]+grid[ir5]+grid[ir6]);
                     }
                 }
-
-                // Keep point charges and surface voltages
-                VoltChargeGrid::AddChargeGrid();
-                VoltChargeGrid::AddVoltageCircleGrid();
             }
         }
         else
@@ -211,12 +207,11 @@ void VoltChargeGrid::Relaxation()
 
                     grid[icr] = 1.0/4.0*(grid[ir1]+grid[ir2]+grid[ir3]+grid[ir4]);
                 }
-
-                // Keep point charges and surface voltages
-                VoltChargeGrid::AddChargeGrid();
-                VoltChargeGrid::AddVoltageCircleGrid();
             }
         }
+        // Keep point charges and surface voltages
+        VoltChargeGrid::AddChargeGrid();
+        VoltChargeGrid::AddVoltageCircleGrid();
     }
     VoltChargeGrid::SaveResults();
 }
