@@ -1,30 +1,36 @@
-set terminal wxt 
-set title "Voltage Heatmap at Z=0"
+set terminal pngcairo
+set output "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4.png"
+set title "3D Voltage Surface at Z=0"
 set xlabel "X Grid Position"
 set ylabel "Y Grid Position"
+set zlabel "Voltage (V)"
 
-# Set the view to 2D
-set view map
+# 1. Change the view from 'map' (2D) to 3D
+# 60 is the tilt (elevation), 30 is the rotation
+set view 60, 30, 1, 1
 set size square
 
-# 1. Define a smooth Blue-White-Red diverging palette
-# This is much easier on the eyes and shows gradients clearly
-set palette defined ( 0 "blue", 1 "white", 2 "red" )
+# 2. Keep your smooth palette
+set palette defined ( -4 "blue", 0.25 "yellow", 4 "red" )
 
-# 2. Add Contours (Essential for seeing subtle differences)
-set contour base
-set cntrparam level 15  # Draw 15 lines of constant voltage
-set cntrlabel font ",8"
+# 3. Handle Contours 
+# 'set contour surface' puts lines on the 3D shape itself
+set contour surface
+set cntrparam level 15
 unset key
 
-# 3. Smooth the data (Interpolation)
-# This prevents the "pixelated" look and shows the flow of voltage
+# 4. Improve Visuals for 3D
+set pm3d at s depthorder  # Styles the surface and handles transparency/layering
+set hidden3d               # Hides lines "behind" the peaks for a cleaner look
+set ticslevel 0            # Ensures the plot sits on the base of the axes
+
+# 5. Interpolation for smoothness
 set pm3d interpolate 10,10
 
-# 4. Optional: Force the '0' voltage to be white
-# If your data goes from -5V to 5V, this centers the scale
-# set cbrange [-5:5]
-
+# Plotting with 'pm3d' will now use the Z-value for height automatically
 splot "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4.txt" \
       using 1:2:($3==0 ? $4 : 1/0) with pm3d
-pause -1 "Press Enter to exit"
+      
+#set output
+
+#pause -1 "Press Enter to exit"
