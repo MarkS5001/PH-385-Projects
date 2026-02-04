@@ -12,21 +12,21 @@ Date: 2/3/2026
 */
 #include <iostream>
 #include <ctime>
-#include "VoltChargeGrid.hpp"
+#include "VoltChargeGrid.cpp"
 
 using namespace std;
 using namespace VCG;
 
 double size = 50, gridSpacing = 2.5; // Grid size and spacing in cm
 double charge1 = 1, charge2 = 1, charge3 = -1, charge4 = -1; // Charge in uC
-double rx1 = 25, ry1 = 0.0; // Position of charge 1 in cm
-double rx2 = 0.0, ry2 = 25; // Position of charge 2 in cm
-double rx3 = -25, ry3 = 0.0; // Position of charge 1 in cm
-double rx4 = 0.0, ry4 = -25; // Position of charge 1 in cm
-double radius = 10.0; // Radius of disk of voltage
-double voltCirclePosition = 0.0; // Position of center of voltage disk
+int rx1 = 25, ry1 = 0; // Position of charge 1 in cm
+int rx2 = 0, ry2 = 25; // Position of charge 2 in cm
+int rx3 = -25, ry3 = 0; // Position of charge 1 in cm
+int rx4 = 0, ry4 = -25; // Position of charge 1 in cm
+int radius = 10; // Radius of disk of voltage
+int voltCirclePosition = 0; // Position of center of voltage disk
 double voltCircleVoltage = 0.25; // Voltage of disk in V
-double rz = 0.0; // Position of all z components
+int rz = 0; // Position of all z components
 
 string filename = "resultsP4.txt";
 
@@ -35,7 +35,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize class
-    VoltChargeGrid grid(10, false, filename);
+    VoltChargeGrid grid(10, false, filename, 40);
 
     // Add charges
     grid.AddPointCharge(charge1, rx1, ry1, rz);
@@ -45,7 +45,7 @@ int main()
     grid.AddChargeGrid();
 
     // Add surface voltages
-    grid.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 1.0);
+    grid.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 1);
     grid.AddVoltageCircleGrid();
 
     // Run simulation
