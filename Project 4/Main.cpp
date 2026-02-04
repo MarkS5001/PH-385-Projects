@@ -18,7 +18,7 @@ using namespace std;
 using namespace VCG;
 
 double size = 50, gridSpacing = 2.5; // Grid size and spacing in cm
-double charge1 = 1, charge2 = 1, charge3 = -1, charge4 = -1; // Charge in uC
+double charge1 = 1e-9, charge2 = 1e-9, charge3 = -1e-9, charge4 = -1e-9; // Charge in uC
 int rx1 = 25, ry1 = 0; // Position of charge 1 in cm
 int rx2 = 0, ry2 = 25; // Position of charge 2 in cm
 int rx3 = -25, ry3 = 0; // Position of charge 1 in cm
@@ -35,7 +35,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize class
-    VoltChargeGrid grid(10, false, filename, 40);
+    VoltChargeGrid grid(10, false, filename);
 
     // Add charges
     grid.AddPointCharge(charge1, rx1, ry1, rz);
