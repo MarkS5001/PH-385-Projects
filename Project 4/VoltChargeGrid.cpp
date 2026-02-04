@@ -9,7 +9,7 @@ You can also decrease the time step to decrease the error, however the number
 of steps needed will increase if a user does this.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/2/2026
+Date: 2/3/2026
 */
 
 #include "VoltChargeGrid.hpp"
@@ -147,7 +147,7 @@ void VoltChargeGrid::Relaxation()
                         grid[z][y][x] = 1/6*(grid[z][y][x-1]+grid[z][y][x+1]+grid[z][y-1][x]+grid[z][y+1][x]+grid[z-1][y][x]+grid[z+1][y][x]);
                     }
                 }
-                
+
                 // Keep point charges and surface voltages
                 VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();
@@ -161,7 +161,7 @@ void VoltChargeGrid::Relaxation()
                 {
                     grid[0][y][x] = 1/4*(grid[0][y][x-1]+grid[0][y][x+1]+grid[0][y-1][x]+grid[0][y+1][x]);
                 }
-                
+
                 // Keep point charges and surface voltages
                 VoltChargeGrid::AddChargeGrid();
                 VoltChargeGrid::AddVoltageCircleGrid();

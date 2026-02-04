@@ -8,7 +8,7 @@ placment of charges, voltage of voltage spots, and size of voltage spots.
 This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/2/2026
+Date: 2/3/2026
 */
 #include <iostream>
 #include <ctime>
