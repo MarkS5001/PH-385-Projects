@@ -17,7 +17,7 @@ namespace VCG
     class VoltChargeGrid
     {
         private:
-            double gridSpacing = 2.5;
+            double gridSpacing = 2.5e-2;
             int gridSize = 40;
             int offset = gridSize/2;
             double k = 8.99e9; // Coulomb's constant (SI)

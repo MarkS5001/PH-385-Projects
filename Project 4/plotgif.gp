@@ -20,7 +20,7 @@ unset key
 # THE LOOP
 # ZDATA_min and ZDATA_max are created by the 'stats' command
 # You might need to adjust the 'step' (0.5 here) to match your Z-grid spacing
-do for [val = ZDATA_min : ZDATA_max : 1] {
+do for [val = ZDATA_min : ZDATA_max : 0.025] {
     set title sprintf("Voltage Heatmap at Z = %.2f", val)
     splot "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4.txt" \
           using 1:2:($3 == val ? $4 : 1/0) with pm3d

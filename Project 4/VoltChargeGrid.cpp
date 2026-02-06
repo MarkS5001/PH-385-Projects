@@ -48,6 +48,7 @@ void VoltChargeGrid::AddChargeGrid()
         double q = pointChargesCharge[i];
 
         // Change origin from problem to code for the six spaces surrounding point charge
+        int ir0 = ChangeIndex(x,y,z);
         int ir1 = ChangeIndex(x+1,y,z);
         int ir2 = ChangeIndex(x-1,y,z);
         int ir3 = ChangeIndex(x,y+1,z);
@@ -59,6 +60,7 @@ void VoltChargeGrid::AddChargeGrid()
         double v = VoltageFromPointCharge(q, gridSpacing);
 
         // Place voltage from charge to adjoining grid points
+        grid[ir0] = v;
         grid[ir1] = v;
         grid[ir2] = v;
         grid[ir3] = v;
@@ -100,7 +102,7 @@ void VoltChargeGrid::AddVoltageCircleGrid()
                 {
                     double gx = x-offset;
                     double gy = y-offset;
-                    if (sqrt((gy-ry)*(gy-ry)+(gx-rx)*(gx-rx))*gridSpacing <= radius)
+                    if (sqrt((gy-ry)*(gy-ry)+(gx-rx)*(gx-rx)) <= radius)
                     {
                         int icr = ChangeIndex(gx, gy, 0); // Get index for current point
                         grid[icr] = V;
@@ -120,7 +122,7 @@ void VoltChargeGrid::AddVoltageCircleGrid()
                         double gy = y-offset;
                         double gz = z-offset;
 
-                        if (sqrt((gz-rz)*(gz-rz)+(gy-ry)*(gy-ry)+(gx-rx)*(gx-rx))*gridSpacing <= radius)
+                        if (sqrt((gz-rz)*(gz-rz)+(gy-ry)*(gy-ry)+(gx-rx)*(gx-rx)) <= radius)
                         {
                             int icr = ChangeIndex(gx, gy, gz); // Get index for current point
                             grid[icr] = V;
@@ -222,7 +224,7 @@ void VoltChargeGrid::SaveResults()
             {
                 int icr = x*gridSize*gridSize+y*gridSize+z;
                 // Write: x y z value
-                voltage << x-offset << " " << y-offset << " " << z-offset << " " << grid[icr] << "\n";
+                voltage << (x-offset)*gridSpacing << " " << (y-offset)*gridSpacing << " " << (z-offset)*gridSpacing << " " << grid[icr] << "\n";
             }
             
             // One blank line after each "row" in a slice
