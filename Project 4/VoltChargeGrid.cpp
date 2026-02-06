@@ -3,13 +3,13 @@ Class VoltChargeGrid
 
 Solves for the voltage of the grids
 
-This code has limitations in the form of time step. With the use of Euler's
-method, h (the time step) squared terms are neglected, and these terms will add up.
-You can also decrease the time step to decrease the error, however the number
-of steps needed will increase if a user does this.
+This code has limitations in the form of iterations, and how big the box is.
+Having more iterations results in a better relaxation at the cost of increased time.
+The size of the box will change how much it can relax to zero since there can be more or
+less space.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/3/2026
+Date: 2/6/2026
 */
 
 #include "VoltChargeGrid.hpp"
@@ -95,7 +95,7 @@ void VoltChargeGrid::AddVoltageCircleGrid()
         // Get voltage of the circle
         double V = voltageCirclesVoltage[i];
 
-        if (D2 != 0)
+        if (D2 == 0)
         {
             for (int y = 0; y < gridSize; y++)
             {

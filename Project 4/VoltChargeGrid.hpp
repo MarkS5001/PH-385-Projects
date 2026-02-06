@@ -4,7 +4,7 @@ Header file for VoltChargeGrid class
 Creates an outline of what the VoltChargeGrid class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/3/2026
+Date: 2/6/2026
 */
 
 #pragma once
