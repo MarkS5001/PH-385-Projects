@@ -38,24 +38,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize class for 2D grid
-    VoltChargeGrid grid2D(gridSpacing, gridSize, iterations, true, filename2D); // true for 2D, false for 3D
-
-    // Add charges
-    grid2D.AddPointCharge(charge1, rx1, ry1, rz);
-    grid2D.AddPointCharge(charge2, rx2, ry2, rz);
-    grid2D.AddPointCharge(charge3, rx3, ry3, rz);
-    grid2D.AddPointCharge(charge4, rx4, ry4, rz);
-    grid2D.AddChargeGrid();
-
-    // Add surface voltages
-    grid2D.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 0); // 0 for circle, any other number for sphere
-    grid2D.AddVoltageCircleGrid();
-
-    // Run simulation
-    grid2D.Relaxation();
-
-    // Initialize class
-    VoltChargeGrid grid3D(gridSpacing, gridSize, iterations, false, filename3D); // true for 2D, false for 3D
+    VoltChargeGrid grid3D(gridSpacing, gridSize, iterations, true, filename3D); // true for 3D, false for 2D
 
     // Add charges
     grid3D.AddPointCharge(charge1, rx1, ry1, rz);
@@ -65,11 +48,28 @@ int main()
     grid3D.AddChargeGrid();
 
     // Add surface voltages
-    grid3D.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 0); // 0 for circle, anyother number for sphere
+    grid3D.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 0); // 0 for circle, any other number for sphere
     grid3D.AddVoltageCircleGrid();
 
     // Run simulation
     grid3D.Relaxation();
+
+    // Initialize class
+    VoltChargeGrid grid2D(gridSpacing, gridSize, iterations, false, filename2D); // true for 3D, false for 2D
+
+    // Add charges
+    grid2D.AddPointCharge(charge1, rx1, ry1, rz);
+    grid2D.AddPointCharge(charge2, rx2, ry2, rz);
+    grid2D.AddPointCharge(charge3, rx3, ry3, rz);
+    grid2D.AddPointCharge(charge4, rx4, ry4, rz);
+    grid2D.AddChargeGrid();
+
+    // Add surface voltages
+    grid2D.AddVoltageCircle(voltCircleVoltage, voltCirclePosition, voltCirclePosition, rz, radius, 0); // 0 for circle, anyother number for sphere
+    grid2D.AddVoltageCircleGrid();
+
+    // Run simulation
+    grid2D.Relaxation();
 
     time_t end = clock();// Get program start time
     cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
