@@ -20,7 +20,8 @@ using namespace std;
 using namespace VCG;
 
 // Give initial parameters
-VoltChargeGrid::VoltChargeGrid(int NumberOfIterations, bool DD3, std::string Filename) : 
+VoltChargeGrid::VoltChargeGrid(double GridSpacing, int GridSize, int NumberOfIterations, bool DD3, std::string Filename) : 
+                                gridSpacing(GridSpacing), gridSize(GridSize), 
                                 numberOfIterations(NumberOfIterations), D3(DD3), filename(Filename), 
                                 grid(gridSize*gridSize*gridSize, 0.0)
 {};
