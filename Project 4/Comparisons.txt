@@ -1,0 +1,18 @@
+Comparisons Between 3D Plot Runtime vs 2D Plot Runtime
+
+3D-0.454s
+2D-0.131s
+
+Program Specifications:
+--100 iterations
+--grid from -50cm to 50cm
+--grid spacing of 2.5cm
+--4 point charges
+--circle of constant voltage
+
+Hardware Specifications:
+--Ubuntu 24.04 VM (using Oracle) on Windows 11
+    ++8Gb ram
+    ++6 CPUs
+
+The 3D plot needed about 4 times as much time than the 2D plot.
