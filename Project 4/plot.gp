@@ -1,8 +1,8 @@
 set terminal pngcairo
-set output "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4.png"
+set output "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4_3D.png"
 set title "3D Voltage Surface at Z=0"
-set xlabel "X Grid Position"
-set ylabel "Y Grid Position"
+set xlabel "X (m)"
+set ylabel "Y (m)"
 set zlabel "Voltage (V)"
 
 # 1. Change the view from 'map' (2D) to 3D
@@ -28,7 +28,7 @@ set ticslevel 0            # Ensures the plot sits on the base of the axes
 set pm3d interpolate 10,10
 
 # Plotting with 'pm3d' will now use the Z-value for height automatically
-splot "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4.txt" \
+splot "/home/mark5001/Code/Test/PH-385-Projects/Project 4/resultsP4_3D.txt" \
       using 1:2:($3==0 ? $4 : 1/0) with pm3d
       
 #set output
