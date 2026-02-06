@@ -11,7 +11,7 @@ set view 60, 30, 1, 1
 set size square
 
 # 2. Keep your smooth palette
-set palette defined ( -4 "blue", 0.25 "yellow", 4 "red" )
+set palette defined ( -0.4 "blue", 0 "white", 0.4 "red" )
 
 # 3. Handle Contours 
 # 'set contour surface' puts lines on the 3D shape itself
