@@ -21,8 +21,6 @@ namespace VCG
             int gridSize;
             int offset = gridSize/2;
             double k = 8.99e9; // Coulomb's constant (SI)
-            // int numberOfPointCharges = 0;
-            // int numberOfVoltageCircles = 0;
             bool D3;
             int numberOfIterations;
             std::string filename;
@@ -41,7 +39,6 @@ namespace VCG
             void AddVoltageCircleGrid();
             double VoltageFromPointCharge(double q, double r);
             int ChangeIndex(int x, int y, int z);
-            // int ChageOrigin();
             void Relaxation();
             void SaveResults();
     };
