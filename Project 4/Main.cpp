@@ -37,7 +37,7 @@ int main()
 {
     clock_t start = clock(); // Get program start time
 
-    // Initialize class for 2D grid
+    // Initialize class for 3D grid
     VoltChargeGrid grid3D(gridSpacing, gridSize, iterations, true, filename3D); // true for 3D, false for 2D
 
     // Add charges
@@ -54,7 +54,7 @@ int main()
     // Run simulation
     grid3D.Relaxation();
 
-    // Initialize class
+    // Initialize class for 2D grid
     VoltChargeGrid grid2D(gridSpacing, gridSize, iterations, false, filename2D); // true for 3D, false for 2D
 
     // Add charges
