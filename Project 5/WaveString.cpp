@@ -37,7 +37,7 @@ void WaveString::AddWave(double amplitude, double width, double center)
 {
     for (int i = 0; i < segments; i++)
     {
-        stringValues[i] = GaussianFunction(i*segmentLength, amplitude, width, center);
+        stringValues[i] += GaussianFunction(i*segmentLength, amplitude, width, center);
     }
 }
 
@@ -71,6 +71,7 @@ void WaveString::CalculateStringPosition()
                 stringFuture[i] += C2*(stringValues[i+1]+stringValues[i-1]);
                 stringFuture[i] += C3*(stringValues[i+2]+stringValues[i-2]);
             }
+            stringValues = stringFuture;
         }
         time += timeStep;
     }
