@@ -31,7 +31,7 @@ double center1 = 0.5, width1 = 0.1, amplitude1 = 0.01;
 double center2 = 0.35, width2 = 0.05, amplitude2 = 0.01;
 
 // Parameters for 3rd Gaussian all in meters
-double center3 = 0.75, width3 = 0.03, amplitude3 = 0.01;
+double center3 = 0.75, width3 = 0.03, amplitude3 = -0.01;
 
 std::string filename = "resultsP5.txt";
 
