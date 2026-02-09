@@ -13,10 +13,11 @@ Date: 2/9/2026
 */
 #include <iostream>
 #include <ctime>
-#include "WaveString.hpp"
+#include "WaveString.cpp"
 
 double length = 1.0; // In m
 double waveSpeed = 250.0; // In m/s
+double segmentLength = 0.01; // In m
 int segments = 100;
 double r = 1.0; // Timestep ratio
 double stiffness = 0.001;
@@ -32,13 +33,24 @@ double center2 = 0.35, width2 = 0.05, amplitude2 = 0.01;
 // Parameters for 3rd Gaussian all in meters
 double center3 = 0.75, width3 = 0.03, amplitude3 = 0.01;
 
+std::string filename = "resultsP5.txt";
+
 using namespace std;
 
 int main()
 {
     clock_t start = clock(); // Get program start time
 
-    
+    // Initialize string
+    WaveString waveString(segments, segmentLength, stiffness, duration, waveSpeed, filename);
+
+    // Add waves to string
+    waveString.AddWave(amplitude1, width1, center1);
+    waveString.AddWave(amplitude2, width2, center2);
+    waveString.AddWave(amplitude3, width3, center3);
+
+    // Start calculation
+    waveString.CalculateStringPosition();
 
     time_t end = clock();// Get program start time
     cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
