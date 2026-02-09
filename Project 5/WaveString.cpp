@@ -81,9 +81,9 @@ void WaveString::SaveResults()
 {
     ofstream Position(filename);
 
-    for (int i = 0; i == segments; i++)
+    for (int i = 0; i <= segments; i++)
     {
-        Position << stringValues[i] << endl;
+        Position << i*segmentLength << " " << stringValues[i] << endl;
     }
 
     Position.close();
