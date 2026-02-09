@@ -13,9 +13,9 @@ Author: Mark Smith (smi20046@byui.edu)
 Date: 2/9/2026
 */
 
-#include "class.hpp"
+#include "WaveString.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
 using namespace std;
-using namespace Name;
+using namespace WS;

@@ -10,12 +10,12 @@ Date: 2/9/2026
 #pragma once
 #include <vector>
 
-namespace Name
+namespace WS
 {
-    class Class
+    class WaveString
     {
         private:
         public:
-            Class();
+            WaveString();
     };
 }
