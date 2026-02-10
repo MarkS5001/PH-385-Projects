@@ -52,7 +52,7 @@ int main()
     // Start calculation
     waveString.CalculateStringPosition();
 
-    // waveString.SaveResults();
+    waveString.SaveResults();
 
     time_t end = clock();// Get program start time
     cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
