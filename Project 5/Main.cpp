@@ -19,7 +19,7 @@ double length = 1.0; // In m
 double waveSpeed = 250.0; // In m/s
 double segmentLength = 0.01; // In m
 int segments = 100;
-double r = 1.0; // Timestep ratio
+double r = 0.5; // Timestep ratio
 double stiffness = 0.001;
 double dampeningCoefficient = 10.0;
 double duration = 0.25; // s
@@ -42,7 +42,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize string
-    WaveString waveString(segments, segmentLength, stiffness, duration, waveSpeed, filename);
+    WaveString waveString(segments, segmentLength, stiffness, duration, waveSpeed, r, filename);
 
     // Add waves to string
     waveString.AddWave(amplitude1, width1, center1);

@@ -20,9 +20,9 @@ Date: 2/9/2026
 using namespace std;
 using namespace WS;
 
-WaveString::WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, string Filename) : 
-    segments(Segments), segmentLength(SegmentLength), stringValues(Segments, 0.0), C1(2-2-6*epsilon*Segments*Segments),
-    C2((1+4*epsilon*Segments*Segments)), C3(-epsilon*Segments*Segments), timeStep(SegmentLength/WaveSpeed), 
+WaveString::WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, double r, string Filename) : 
+    segments(Segments), segmentLength(SegmentLength), stringValues(Segments, 0.0), C1(2-2*r*r-6*epsilon*r*r*Segments*Segments),
+    C2(r*r*(1+4*epsilon*Segments*Segments)), C3(-epsilon*r*r*Segments*Segments), timeStep(r*SegmentLength/WaveSpeed), 
     duration(Duration), filename(Filename)
 {
     

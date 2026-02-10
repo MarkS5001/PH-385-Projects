@@ -27,7 +27,7 @@ namespace WS
             std::string filename;
 
         public:
-            WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, std::string Filename); // Gets initial parameters
+            WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, double r, std::string Filename); // Gets initial parameters
             double GaussianFunction(double x, double amplitude, double width, double center); // Calculates Gaussian of wave
             void AddWave(double amplitude, double width, double center); // Adds initial position of wave to string
             void CalculateStringPosition(); // Loops through to calculate time developed state of string
