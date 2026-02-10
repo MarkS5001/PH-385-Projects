@@ -51,38 +51,33 @@ void WaveString::CalculateStringPosition()
 
     while (time < duration)
     {
-        for (int i = 1; i < segments; i++)
+        stringFuture[1] = C1*stringValues[1]-stringPast[1]
+                         +C2*(stringValues[1+1]+0.0)
+                         +C3*(stringValues[1+2]-stringValues[1]);
+
+        stringFuture[segments-2] = C1*stringValues[segments-2]-stringPast[segments-2]
+                                  +C2*(0.0+stringValues[segments-2-1])
+                                  +C3*(-stringValues[segments-2]+stringValues[segments-2-2]);
+        for (int i = 2; i < segments-2; i++)
         {
-            if (i == 1)
-            {
-                stringFuture[i] += C1*(stringValues[i]-stringPast[i]);
-                stringFuture[i] += C2*(stringValues[i+1]+stringValues[i-1]);
-                stringFuture[i] += C3*(stringValues[i+2]+stringValues[i]);
-            }
-            else if (i == segments-1)
-            {
-                stringFuture[i] += C1*(stringValues[i]-stringPast[i]);
-                stringFuture[i] += C2*(stringValues[i+1]+stringValues[i-1]);
-                stringFuture[i] += C3*(stringValues[i]+stringValues[i-2]);
-            }
-            else
-            {
-                stringFuture[i] += C1*(stringValues[i]-stringPast[i]);
-                stringFuture[i] += C2*(stringValues[i+1]+stringValues[i-1]);
-                stringFuture[i] += C3*(stringValues[i+2]+stringValues[i-2]);
-            }
-            stringValues = stringFuture;
+            stringFuture[i] = C1*stringValues[i]-stringPast[i]
+                             +C2*(stringValues[i+1]+stringValues[i-1])
+                             +C3*(stringValues[i+2]+stringValues[i-2]);
         }
+        stringFuture[0] = 0;
+        stringFuture[segments-1] = 0;
+        stringPast = stringValues;
+        stringValues = stringFuture;
         time += timeStep;
     }
-    SaveResults();
+    // SaveResults();
 }
 
 void WaveString::SaveResults()
 {
     ofstream Position(filename);
 
-    for (int i = 0; i <= segments; i++)
+    for (int i = 0; i < segments; i++)
     {
         Position << i*segmentLength << " " << stringValues[i] << endl;
     }
