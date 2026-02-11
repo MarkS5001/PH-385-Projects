@@ -4,7 +4,7 @@ Header file for WaveString clas
 Creates an outline of what the WaveString class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/10/2026
+Date: 2/11/2026
 */
 
 #pragma once

@@ -10,13 +10,14 @@ You can also decrease the time step to decrease the error, however the number
 of steps needed will increase if a user does this.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/10/2026
+Date: 2/11/2026
 */
 
 #include "WaveString.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 using namespace WS;
 
@@ -50,7 +51,8 @@ void WaveString::CalculateStringPosition()
     // Save initial values
     for (int i = 0; i < segments; i++)
     {
-        Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+        // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+        Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
     }
     Position << endl << endl;
 
@@ -105,7 +107,8 @@ void WaveString::CalculateStringPosition()
         // Save new values
         for (int i = 0; i < segments; i++)
         {
-            Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+            // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+            Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
         }
         Position << endl << endl;
     }
