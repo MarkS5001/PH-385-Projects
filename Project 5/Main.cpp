@@ -42,7 +42,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initialize string
-    WaveString waveString(segments, segmentLength, stiffness, duration, waveSpeed, r, filename);
+    WaveString waveString(segments, segmentLength, stiffness, duration, waveSpeed, r, dampeningCoefficient, filename);
 
     // Add waves to string
     waveString.AddWave(amplitude1, width1, center1);

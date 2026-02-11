@@ -20,10 +20,10 @@ Date: 2/9/2026
 using namespace std;
 using namespace WS;
 
-WaveString::WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, double r, string Filename) : 
+WaveString::WaveString(int Segments, double SegmentLength, double epsilon, double Duration, double WaveSpeed, double r, double DampeningCoefficient, string Filename) : 
     segments(Segments), segmentLength(SegmentLength), stringValues(Segments, 0.0), C1(2-2*r*r-6*epsilon*r*r*Segments*Segments),
     C2(r*r*(1+4*epsilon*Segments*Segments)), C3(-epsilon*r*r*Segments*Segments), timeStep(r*SegmentLength/WaveSpeed), 
-    duration(Duration), filename(Filename)
+    duration(Duration), dampeningCoefficient(DampeningCoefficient), filename(Filename)
 {
     
 }
@@ -51,19 +51,25 @@ void WaveString::CalculateStringPosition()
 
     while (time < duration)
     {
+        // Handle the boundaries
         stringFuture[1] = C1*stringValues[1]-stringPast[1]
                          +C2*(stringValues[1+1]+0.0)
-                         +C3*(stringValues[1+2]-stringValues[1]);
+                         +C3*(stringValues[1+2]-stringValues[1])
+                         +2*dampeningCoefficient*(stringValues[1]-stringPast[1])/timeStep;
 
         stringFuture[segments-2] = C1*stringValues[segments-2]-stringPast[segments-2]
                                   +C2*(0.0+stringValues[segments-2-1])
-                                  +C3*(-stringValues[segments-2]+stringValues[segments-2-2]);
+                                  +C3*(-stringValues[segments-2]+stringValues[segments-2-2])
+                                  +2*dampeningCoefficient*(stringValues[segments-2]-stringPast[segments-2])/timeStep;
+        // Handle nonboundaries
         for (int i = 2; i < segments-2; i++)
         {
             stringFuture[i] = C1*stringValues[i]-stringPast[i]
                              +C2*(stringValues[i+1]+stringValues[i-1])
-                             +C3*(stringValues[i+2]+stringValues[i-2]);
+                             +C3*(stringValues[i+2]+stringValues[i-2])
+                             +2*dampeningCoefficient*(stringValues[i]-stringPast[i])/timeStep;
         }
+        // Update values
         stringFuture[0] = 0;
         stringFuture[segments-1] = 0;
         stringPast = stringValues;
