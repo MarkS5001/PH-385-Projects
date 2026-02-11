@@ -44,6 +44,8 @@ void WaveString::AddWave(double amplitude, double width, double center)
 
 void WaveString::CalculateStringPosition()
 {
+    int count = 0; // For saving
+
     double time = 0; // Tracks time of string evolution
 
     ofstream Position(filename); // For saving to file
@@ -103,14 +105,18 @@ void WaveString::CalculateStringPosition()
         stringPast = stringValues;
         stringValues = stringFuture;
         time += timeStep;
+        count += 1;
 
-        // Save new values
-        for (int i = 0; i < segments; i++)
+        if (count%4 ==0)
         {
-            // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
-            Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
+            // Save new values
+            for (int i = 0; i < segments; i++)
+            {
+                // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+                Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
+            }
+            Position << endl << endl;
         }
-        Position << endl << endl;
     }
     Position.close();
 }
