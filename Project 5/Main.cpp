@@ -9,7 +9,7 @@ coefficient, initial position, initial velocity, spin angular velocity,
 and time step, all in SI units. This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/9/2026
+Date: 2/10/2026
 */
 #include <iostream>
 #include <ctime>

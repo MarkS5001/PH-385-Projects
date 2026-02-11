@@ -10,7 +10,7 @@ You can also decrease the time step to decrease the error, however the number
 of steps needed will increase if a user does this.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/9/2026
+Date: 2/10/2026
 */
 
 #include "WaveString.hpp"
