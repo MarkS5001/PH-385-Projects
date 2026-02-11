@@ -18,10 +18,10 @@ namespace WS
     {
         private:
             std::vector<double> stringValues; // Holds string segment position
+            double timeStep;
             int segments; // Number of segments the string has (saving it for looping)
             double segmentLength; // Length of each string segment (for Gaussian function calculation)
-            double C1, C2, C3; // Coefficients for loop
-            double timeStep; // Assumes string parameter (r) is equal to one
+            double C1, C2, C3, C4; // Coefficients for loop
             double duration;
             double dampeningCoefficient;
             std::string filename;
