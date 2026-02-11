@@ -45,12 +45,22 @@ void WaveString::CalculateStringPosition()
 {
     double time = 0; // Tracks time of string evolution
 
+    ofstream Position(filename); // For saving to file
+
+    // Save initial values
+    for (int i = 0; i < segments; i++)
+    {
+        Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+    }
+    Position << endl << endl;
+
     // Strings for calculating new position
     std::vector<double> stringPast = stringValues;
     std::vector<double> stringFuture(segments, 0.0);
 
     while (time < duration)
     {
+        
         // Handle the boundaries
         stringFuture[1] = C1*stringValues[1]-stringPast[1]
                          +C2*(stringValues[1+1]+0.0)
@@ -91,8 +101,15 @@ void WaveString::CalculateStringPosition()
         stringPast = stringValues;
         stringValues = stringFuture;
         time += timeStep;
+
+        // Save new values
+        for (int i = 0; i < segments; i++)
+        {
+            Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
+        }
+        Position << endl << endl;
     }
-    // SaveResults();
+    Position.close();
 }
 
 void WaveString::SaveResults()
