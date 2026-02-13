@@ -1,16 +1,16 @@
 /*
 Class WaveString
 
-Simulates the motion of a string including quadratic air
-resistance, and the Magnus force using Euler's method.
+Simulates the motion of a string including dampening, and stiffness
+using Euler's method. 
 
-This code has limitations in the form of time step. With the use of Euler's
-method, h (the time step) squared terms are neglected, and these terms will add up.
-You can also decrease the time step to decrease the error, however the number
-of steps needed will increase if a user does this.
+This code has limitations in the form of the cromer value used (r).
+This value is what sets the timestep. An improper setting can result
+in outrageously values (most likely nan). When a lower cromer value
+is used the code will take longer to run.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/11/2026
+Date: 2/13/2026
 */
 
 #include "WaveString.hpp"

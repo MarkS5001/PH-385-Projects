@@ -1,15 +1,15 @@
 /*
-PH 385 Project 1 Main File
+PH 385 Project 5 Main File
 
-Models the projectile motion of a ball in three dimensions, including
-quadratic air resistance and the Magnus force.
+Simulates the motion of a string including dampening, and stiffness.
 
-The user inputs the mass of the ball, diameter of the ball, air density, drag
-coefficient, initial position, initial velocity, spin angular velocity,
-and time step, all in SI units. This is followed by an output file name.
+The user inputs the wave speed for the medium, length of each segment,
+how many segments, cromer value (r), dampening coefficient, duration,
+stiffness, and parameters for a Gaussian wave function (center, width,
+and amplitude), all in SI units. This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/11/2026
+Date: 2/13/2026
 */
 #include <iostream>
 #include <ctime>

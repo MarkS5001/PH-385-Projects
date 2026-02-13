@@ -1,10 +1,10 @@
 /*
-Header file for WaveString clas
+Header file for WaveString class
 
 Creates an outline of what the WaveString class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/11/2026
+Date: 2/13/2026
 */
 
 #pragma once
@@ -31,6 +31,6 @@ namespace WS
             double GaussianFunction(double x, double amplitude, double width, double center); // Calculates Gaussian of wave
             void AddWave(double amplitude, double width, double center); // Adds initial position of wave to string
             void CalculateStringPosition(); // Loops through to calculate time developed state of string
-            void SaveResults();
+            void SaveResults(); // Saves last result to file (not used anymore)
     };
 }
