@@ -107,7 +107,7 @@ void WaveString::CalculateStringPosition()
         time += timeStep;
         count += 1;
 
-        if (count%100 ==0)
+        if (count%1/*00*/ ==0)
         {
             // Save new values
             for (int i = 0; i < segments; i++)
