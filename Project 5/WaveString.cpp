@@ -17,7 +17,6 @@ Date: 2/13/2026
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include <iomanip>
 using namespace std;
 using namespace WS;
 
@@ -54,7 +53,7 @@ void WaveString::CalculateStringPosition()
     for (int i = 0; i < segments; i++)
     {
         // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
-        Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
+        Position << i * segmentLength << " " << stringValues[i] << " " << time << endl;
     }
     Position << endl << endl;
 
@@ -113,7 +112,7 @@ void WaveString::CalculateStringPosition()
             for (int i = 0; i < segments; i++)
             {
                 // Position << i*segmentLength << " " << stringValues[i] << " " << time << endl;
-                Position << i * segmentLength << " " << stringValues[i] << " " << std::fixed << std::setprecision(8) << time << endl;
+                Position << i * segmentLength << " " << stringValues[i] << " " << time << endl;
             }
             Position << endl << endl;
         }
