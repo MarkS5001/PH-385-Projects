@@ -1,0 +1,12 @@
+I investigated the affect of the stiffness parameter.
+
+I used the following values:
+    1e-3
+    1e-4
+    1e-5
+    1e-6
+
+This resulted in the frequencies shifting to higher
+values, the spacing between them also increases 
+slightly, and the magnitudes of the frequencies are 
+slightly different.
