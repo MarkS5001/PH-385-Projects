@@ -14,22 +14,33 @@ Date: 2/17/2026
 using namespace std;
 using namespace P;
 
-Particle::Particle(double R, double Phi) : r(R), phi(Phi) {}
+Particle::Particle(double X, double Y, double Z) : x(X), y(Y), z(Z) {}
 
-void Particle::Setr(double R)
+void Particle::Setx(double X)
 {
-    r = R;
-}
-void Particle::Setphi(double Phi)
-{
-    phi = Phi;
-}
-double Particle::Getr()
-{
-    return r;
+    x = X;
 }
 
-double Particle::Getphi()
+void Particle::Sety(double Y)
 {
-    return phi;
+    y = Y;
+}
+
+void Particle::Setz(double Z)
+{
+    z = Z;
+}
+double Particle::Getx()
+{
+    return x;
+}
+
+double Particle::Gety()
+{
+    return y;
+}
+
+double Particle::Getz()
+{
+    return z;
 }

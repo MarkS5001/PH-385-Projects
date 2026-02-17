@@ -14,13 +14,17 @@ namespace P
     class Particle
     {
         private:
-            double r; // Distance from origin to particle
-            double phi; // Angle around the azimuthal direction
+            double x;
+            double y;
+            double z;
+
         public:
-            Particle(double R, double Phi);
-            void Setr(double R);
-            void Setphi(double Phi);
-            double Getr();
-            double Getphi();
+            Particle(double X, double Y, double Z);
+            void Setx(double X);
+            void Sety(double Y);
+            void Setz(double Z);
+            double Getx();
+            double Gety();
+            double Getz();
     };
 }
