@@ -89,7 +89,7 @@ void Diffusion::Diffuse()
         MoveParticle();
 
         // Save particle positions to file
-        for (int i = 0; i < duration; i++)
+        for (int i = 0; i < size; i++)
         {
             Particle currentParticle = particles[i];
 
