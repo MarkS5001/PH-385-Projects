@@ -21,7 +21,7 @@ string filename = "resultsP6.txt";
 double boundary = 0.5;
 int duration = 1000;
 double rstep = 0.025;
-int numberParticles = 10;
+int numberParticles = 2500;//10;
 
 int main()
 {
