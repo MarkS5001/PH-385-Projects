@@ -13,6 +13,7 @@ Date: 2/17/2026
 #include <iostream>
 #include <ctime>
 #include "Diffusion.cpp"
+#include "Particle.cpp"
 
 using namespace std;
 
