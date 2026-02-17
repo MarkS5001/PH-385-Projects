@@ -3,3 +3,10 @@
 *.pdb
 *.bat
 *.json
+
+# txt files too large for github (over 100mb)
+resultsP5_1e-3.txt
+resultsP5_1e-4.txt
+resultsP5_1e-5.txt
+resultsP5_1e-6.txt
+resultsP6.txt
