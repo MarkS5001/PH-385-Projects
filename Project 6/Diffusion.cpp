@@ -84,9 +84,11 @@ void Diffusion::Diffuse()
     ofstream Position(filename);
 
     // Loop through the duration
-    for (int i = 0; i < duration; i++)
+    for (int j = 0; j < duration; j++)
     {
         MoveParticle();
+
+        double rs = 0; // Initialize r squared
 
         // Save particle positions to file
         for (int i = 0; i < size; i++)
@@ -97,7 +99,15 @@ void Diffusion::Diffuse()
             double y = currentParticle.Gety();
             double z = currentParticle.Getz();
 
-            Position << x << " " << y << " " << z << endl;
+            rs += x*x+y*y+z*z;
+
+            Position << x << " " << y << " " << z << " ";// << endl;
+            
+            if (i == size-1)
+            {
+                Position << rs/size << " " << j;
+            }
+            Position << endl;
         }
         Position << endl << endl;
     }
