@@ -1,0 +1,8 @@
+Project 6 Comparisons of rstep Values
+
+I used rstep values of 0.01, 0.02, 0.025, 0.03, and 0.04.
+
+From the graphs I can determine that smaller rsteps need more 
+iterations to reach total diffusion, while bigger rsteps need
+less time to reach total diffusion. Smaller rsteps never
+leave the linear region for the 1000 durations.
