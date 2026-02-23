@@ -46,20 +46,20 @@ double Ising::FlipEnergy(int ix, int iy, int iz)
 
     if (iy == 0)
     {
-        iw = 0;
+        iw = size;
     }
     else if (iy == size)
     {
-        ib = size;
+        ib = 0;
     }
 
     if (iz == 0)
     {
-        iu = 0;
+        iu = size;
     }
     else if (iz == size)
     {
-        id = size;
+        id = 0;
     }
 
     int left = grid[ChangeIndex(il, iy, iz)];
@@ -79,9 +79,9 @@ void Ising::CalculateIsing()
 
     for (double T = startTemp; T <= endTemp; T+=tempStep)
     {
+        totalMag = 0; // Reset magnetization
         for (int step = 0; step < duration; step++)
         {
-            totalMag = 0; // Reset magnetization
             for (int z = 0; z < gridSize; z++)
             {
                 for (int y = 0; y < gridSize; y++)
@@ -100,15 +100,15 @@ void Ising::CalculateIsing()
                                 grid[ChangeIndex(x,y,z)]*=-1;
                             }
                         }
-                     if (step == duration-1) // Save magnetization for the final step
-                     {
-                        totalMag += grid[ChangeIndex(x,y,z)];
-                     }
+                        if (step == duration-1) // Save magnetization for the final step
+                        {
+                           totalMag += grid[ChangeIndex(x,y,z)];
+                        }
                     }
                 }
             }
         }
-        Mags << totalMag << " " << T << endl;
+        Mags << totalMag/(gridSize*gridSize*gridSize) << " " << T << endl;
     }
     Mags.close();
 }
