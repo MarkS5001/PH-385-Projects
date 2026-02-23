@@ -15,11 +15,11 @@ Date: 2/23/2026
 
 using namespace std;
 
-int gridSize = 10;
-int duration = 50;
+int gridSize = 20;//10;
+int duration = 200;//50;
 double startTemp = 0.01;
 double endTemp = 4.0;
-double tempStep = 0.04;
+double tempStep = 0.01;
 string filename = "resultsP7.txt";
 
 int main()
