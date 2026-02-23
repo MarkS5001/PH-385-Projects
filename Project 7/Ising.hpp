@@ -28,7 +28,7 @@ namespace IS
 
             // Variables for randomness
             std::mt19937 gen{std::random_device{}()}; // dist(gen) to get random number
-            std::uniform_real_distribution<double> dist{0, 1};
+            std::uniform_real_distribution<double> dist{0.0, 1.0};
 
         public:
             Ising(double GridSize, int Duration, double StartTemp, double EndTemp, double TempStep, std::string Filename); // Get initial parameters
