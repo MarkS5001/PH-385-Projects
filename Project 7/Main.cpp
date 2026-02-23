@@ -15,11 +15,19 @@ Date: 2/23/2026
 
 using namespace std;
 
+int gridSize = 10;
+int duration = 50;
+double startTemp = 0.01;
+double endTemp = 4.0;
+double tempStep = 0.04;
+string filename = "resultsP7.txt";
+
 int main()
 {
     clock_t start = clock(); // Get program start time
 
-    
+    Ising model(gridSize, duration, startTemp, endTemp, tempStep, filename);
+    model.CalculateIsing();
 
     time_t end = clock();// Get program start time
     cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
