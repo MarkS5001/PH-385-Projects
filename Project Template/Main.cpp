@@ -13,6 +13,7 @@ Date: 1/14/2026
 */
 #include <iostream>
 #include <ctime>
+#include "class.cpp"
 
 using namespace std;
 

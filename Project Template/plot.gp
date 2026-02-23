@@ -1,23 +1,12 @@
-# Commas to separate the data
-set datafile separator ","
+set terminal png size 800,600
+set output "rsplot_01.png"
 
-# Labels for everything
-set title "Ping Pong Ball Trajectory"
-set xlabel "x (m)"
-set ylabel "y (m)"
-set zlabel "z (m)"
-
-# Adjust the view
-set view 60, 30, 1, 1
 set grid
+set xlabel "Time (Iteration)"
+set ylabel "<r^2>"
+set title "Average r Squared per Iteration (r step of 0.01)"
 
-# Handle the data
-# command "path" x:y:z connect_with_lines_(with lines) linewidth_(lw) #_for_linewidth line_color_(lc)
-splot "C:/Users/markb/OneDrive/College/BYUI/26 8 Winter/PH 385/PH-385-Projects/Project 2/resultsP2.txt" using 1:2:3 with lines lw 2 lc rgb "purple" title "Ball Path"
+file = 'resultsP6_01.txt'
 
-# Save it
-set terminal png
-set output "resultsP2.png"
-
-# Keep the window open
-pause -1 "Press OK or Enter to close the plot"
+# Plotting with your specific colors/styles
+plot file using 5:4 with points pt 7 ps 0.5 lc rgb "purple" title "Data Points"
