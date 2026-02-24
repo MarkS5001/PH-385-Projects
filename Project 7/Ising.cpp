@@ -41,16 +41,16 @@ double Ising::FlipEnergy(int ix, int iy, int iz)
     }
     else if (ix == size)
     {
-        il = 0;
+        ir = 0;
     }
 
     if (iy == 0)
     {
-        iw = size;
+        ib = size;
     }
     else if (iy == size)
     {
-        ib = 0;
+        iw = 0;
     }
 
     if (iz == 0)
