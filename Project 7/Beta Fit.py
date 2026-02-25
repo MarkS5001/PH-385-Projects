@@ -1,3 +1,12 @@
+"""
+File for Beta and critical temperature analysis
+
+Calculates the beta value and critical temperature
+using the Ising model.
+
+Author: Mark Smith (smi20046@byui.edu)
+Date: 2/25/2026
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
