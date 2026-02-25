@@ -7,13 +7,14 @@ The user inputs the size of the grid, duration, temperature (start and finish),
 temperature step size, and filename to save to.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 2/23/2026
+Date: 2/25/2026
 */
 #include <iostream>
 #include <ctime>
-#include "Ising.cpp"
+#include "Ising.hpp"
 
 using namespace std;
+using namespace IS;
 
 int gridSize10 = 10;
 int gridSize20 = 20;//10;
@@ -39,20 +40,27 @@ int main()
     Ising model10(gridSize10, duration, startTemp, endTemp, tempStep, filename10);
     model10.CalculateIsing();
 
+    cout << endl << (clock()-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
+
     Ising model20(gridSize20, duration, startTemp, endTemp, tempStep, filename20);
     model20.CalculateIsing();
+
+    cout << endl << (clock()-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
 
     Ising model30(gridSize30, duration, startTemp, endTemp, tempStep, filename30);
     model30.CalculateIsing();
 
+    cout << endl << (clock()-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
+
     Ising model40(gridSize40, duration, startTemp, endTemp, tempStep, filename40);
     model40.CalculateIsing();
+
+    cout << endl << (clock()-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
 
     Ising model50(gridSize50, duration, startTemp, endTemp, tempStep, filename50);
     model50.CalculateIsing();
 
-    time_t end = clock();// Get program start time
-    cout << endl << (end-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
+    cout << endl << (clock()-start)/CLOCKS_PER_SEC << " seconds" << endl; // Display how long it took to run
 
     return 0;
 }
