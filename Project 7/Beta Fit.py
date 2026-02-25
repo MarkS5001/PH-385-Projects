@@ -23,6 +23,7 @@ def Beta_Analysis(filename: str):
     # Puts the grid size onto the picture's name
     grid = filename.split("_")[1].split(".")[0]
 
+    plt.figure()
     plt.scatter(data[:,1], data[:,0], label='Data Points')
     T_smooth = np.linspace(min(T_data), Tc_fit, 100)
     plt.plot(T_smooth, ising_power_law(T_smooth, *popt), 'r-', label='Fit Line')
@@ -31,6 +32,7 @@ def Beta_Analysis(filename: str):
     plt.ylabel('Magnetization (M)')
     plt.legend()
     plt.savefig('results'+grid+'.png', dpi=300, bbox_inches='tight')
+    plt.close()
 
 Beta_Analysis("Project 7/resultsP7_10.txt")
 Beta_Analysis("Project 7/resultsP7_20.txt")
