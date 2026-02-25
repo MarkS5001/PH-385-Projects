@@ -7,8 +7,8 @@ def ising_power_law(T, Tc, beta, scale):
     return np.where(T > Tc, 0, scale * np.power(np.maximum(Tc - T, 0), beta))
 
 data = np.genfromtxt("Project 7/resultsP7.txt")
-T_data = data[100:,1]
-M_data = data[100:,0]
+T_data = data[:,1]
+M_data = data[:,0]
 
 # initial guess [Tc, beta, scale]
 initial_guess = [2.25, 0.32, 1.0]
