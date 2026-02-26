@@ -4,6 +4,15 @@
 *.bat
 *.json
 
+# Files from latex to ignore
+*.dvi
+*.synctex.gz
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+
 # txt files too large for github (over 100mb)
 resultsP5_1e-3.txt
 resultsP5_1e-4.txt
