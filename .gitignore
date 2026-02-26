@@ -4,6 +4,8 @@
 *.bat
 *.json
 
+Final Project/Paper to follow (fluid dynamics).pdf
+
 # Files from latex to ignore
 *.dvi
 *.synctex.gz
