@@ -33,6 +33,7 @@ def Beta_Analysis(filename: str):
     grid = filename.split("_")[1].split(".")[0]
 
     plt.figure()
+    plt.title(f"{grid} Sized Cube with beta Fit of {beta_fit:.4f}")
     plt.scatter(data[:,1], data[:,0], label='Data Points')
     T_smooth = np.linspace(min(T_data), Tc_fit, 100)
     plt.plot(T_smooth, ising_power_law(T_smooth, *popt), 'r-', label='Fit Line')
