@@ -1,9 +1,11 @@
 \documentclass{article}
+
 \usepackage{graphicx} % Required for inserting images
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} % Americanize the paper
 \usepackage{float} % To correct image positions
 \usepackage{multicol}
-\usepackage[colorlinks=true, allcolors=black]{hyperref} % I want cross referrences
+\usepackage{xcolor} % To create custom colors (currently to make links grey)
+\usepackage[colorlinks=true, allcolors=black!70, breaklinks=true]{hyperref} % I want cross referrences and links
 
 \title{Report Template}
 
@@ -22,7 +24,21 @@
 
 \section*{\centering{Abstract}}
     
-    Abstract paragraph
+    In this project I will model the motion of a liquid as it traverses a 3-dimensional volume.
+    This will be able to provide dynamic visual motion of the liquid moving about so users can see the physics happen.
+    The model will simulate viscosity, pressure, and surface tension as it tenants with gravity also acting on the particles.
+    The method know as Smoothed Particles Hydrodynamics (SPH) will be employed due to its approach on the Navier-Stokes equation.
+    I will use the following roadmap as I work on the project:
+    \begin{itemize}
+        \item Create the main file to gather the necessary parameters
+        \item Create an outline of the class
+        \item Fill in the outline (with particular emphasis on speed of the simulation)
+        \item Run test simulations
+        \item Correct the errors that will arise
+        \item Do the last two steps again as needed
+        \item Run the simulation with the final values
+    \end{itemize}
+    For validation I will visually watch the simulation to see if abnormalities arise from what it should be doing.
 \vspace{1.5mm}
 % \newpage
 
