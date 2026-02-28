@@ -1,12 +1,14 @@
 I investigated different cubic grids for the Ising model
 
-I used the following sizes:
--10
--20
--30
--40
--50
+I used the following sizes (run time, beta value, critical temperature):
+-10 (12s, 0.43, 2.25)
+-20 (140s, 0.24, 2.25)
+-30 (382s, 0.21, 2.25)
+-40 (1645s, 0.19, 2.25)
+-50 (1732s, 0.19, 2.25)
 
 When grid size in increases the drop to zero magnetization 
 gets more pronounced. A grid size of 30 seems to be where 
 magnetization settles the most after the critical temperature.
+The beta value also hovers around 0.2, with the critical
+temperature remaining the same for all iterations.
