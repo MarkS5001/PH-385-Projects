@@ -1,0 +1,12 @@
+I investigated different cubic grids for the Ising model
+
+I used the following sizes:
+-10
+-20
+-30
+-40
+-50
+
+When grid size in increases the drop to zero magnetization 
+gets more pronounced. A grid size of 30 seems to be where 
+magnetization settles the most after the critical temperature.
