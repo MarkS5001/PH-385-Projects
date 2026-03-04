@@ -12,17 +12,17 @@ Date: 3/2/2026
 */
 #include <iostream>
 #include <ctime>
-#include "MolecularDynamics.cpp"
+#include "MolecularDynamics.hpp"
 
 using namespace std;
 using namespace MD;
 
 int gridSize = 20;
-int numParticles = 2;
+int numParticles = 15;
 double deltaEnergy = 0.01;
 int steps = 200;
-double cutoffLength = 7;
-double timeStep = 0.01;
+double cutoffLength = 7.0;
+double timeStep = 0.001;
 string filename = "resultsP8.txt";
 
 int main()
@@ -31,28 +31,13 @@ int main()
 
     MolecularDynamics simulation(gridSize, numParticles, deltaEnergy, steps, cutoffLength, timeStep, filename);
 
-    int x = 0.1;
-    int y = 0.1;
-    for (int i = 0; i < numParticles; i++)
+    int particlesPlaced = 0;
+    for (double iy = 1.0; iy < gridSize && particlesPlaced < numParticles; iy += 2.5) 
     {
-        simulation.GivePositions(i, x, y);
-        
-        if (x < gridSize)
+        for (double ix = 1.0; ix < gridSize && particlesPlaced < numParticles; ix += 2.5) 
         {
-            x++;
-        }
-        else
-        {
-            x = 0.1;
-
-            if (y < gridSize)
-            {
-                y++;
-            }
-            else
-            {
-                y = 0.1;
-            }
+            simulation.GivePositions(particlesPlaced, ix, iy);
+            particlesPlaced++;
         }
     }
 
