@@ -18,7 +18,7 @@ using namespace std;
 using namespace MD;
 
 int gridSize = 20;
-int numParticles = 1;
+int numParticles = 2;
 double deltaEnergy = 0.01;
 int steps = 200;
 double cutoffLength = 7;
