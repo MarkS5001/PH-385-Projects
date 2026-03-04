@@ -34,7 +34,7 @@ namespace MD
             double Distance(int NumParticle1, int NumParticle2);
             double Force(double distance);
             double NewPosition(double r, double oldr, double force);
-            double Energy(int v);
+            double Energy(int NumParticle);
             void Dynamics();
     };
 }
