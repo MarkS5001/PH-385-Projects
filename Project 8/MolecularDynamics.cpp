@@ -27,8 +27,8 @@ void MolecularDynamics::GivePositions(int NumParticle, double x, double y)
     positions[NumParticle*2] = x;
     positions[NumParticle*2+1] = y;
 
-    oldPositions[NumParticle*2] = x+0.01;
-    oldPositions[NumParticle*2+1] = y+0.01;
+    oldPositions[NumParticle*2] = x;
+    oldPositions[NumParticle*2+1] = y;
 }
 
 double MolecularDynamics::Distance(int NumParticle1, int NumParticle2)
@@ -131,7 +131,7 @@ void MolecularDynamics::Dynamics()
                 positions[part1*2+1] -= gridSize;
             }
 
-            if (i/10 == 0) // Save every 10 iterations
+            if (i/10 == 0 || part1 == numParticles-1 ) // Save every 10 iterations
             {
                 Data << positions[part1*2] << " " << positions[part1*2+1]; // Save x, y
 
