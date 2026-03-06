@@ -18,6 +18,7 @@ namespace MD
         private:
             std::vector<double> positions;
             std::vector<double> oldPositions;
+            std::vector<double> forces;
             int gridSize;
             int numParticles;
             double deltaEnergy;
