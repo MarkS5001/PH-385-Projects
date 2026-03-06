@@ -18,11 +18,11 @@ using namespace std;
 using namespace MD;
 
 int gridSize = 20;
-int numParticles = 15;
+int numParticles = 30;
 double deltaEnergy = 0.01;
-int steps = 200;
-double cutoffLength = 7.0;
-double timeStep = 0.001;
+int steps = 80000;
+double cutoffLength = 17.0;
+double timeStep = 1e-2;
 string filename = "resultsP8.txt";
 
 int main()
@@ -32,9 +32,9 @@ int main()
     MolecularDynamics simulation(gridSize, numParticles, deltaEnergy, steps, cutoffLength, timeStep, filename);
 
     int particlesPlaced = 0;
-    for (double iy = 1.0; iy < gridSize && particlesPlaced < numParticles; iy += 2.5) 
+    for (double iy = 1.0; iy < gridSize && particlesPlaced < numParticles; iy += 1.5) 
     {
-        for (double ix = 1.0; ix < gridSize && particlesPlaced < numParticles; ix += 2.5) 
+        for (double ix = 1.0; ix < gridSize && particlesPlaced < numParticles; ix += 1.5) 
         {
             simulation.GivePositions(particlesPlaced, ix, iy);
             particlesPlaced++;
