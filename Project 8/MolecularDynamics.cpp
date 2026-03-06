@@ -20,7 +20,8 @@ MolecularDynamics::MolecularDynamics(int GridSize, int NumParticles, double Delt
                                     double CutoffLength, double TimeStep, string Filename) : 
                                     gridSize(GridSize), positions(NumParticles*2,0), oldPositions(NumParticles*2,0), 
                                     deltaEnergy(DeltaEnergy), duration(Duration), numParticles(NumParticles), 
-                                    cutoffLength(CutoffLength), timeStep(TimeStep), filename(Filename){}
+                                    cutoffLength(CutoffLength), timeStep(TimeStep), filename(Filename),
+                                    forces(NumParticles*2,0){}
 
 void MolecularDynamics::GivePositions(int NumParticle, double x, double y)
 {
@@ -43,7 +44,7 @@ double MolecularDynamics::Distance(int NumParticle1, int NumParticle2)
 
 double MolecularDynamics::Force(double distance)
 {
-    return 24*(2/pow(distance, 13)-1/pow(distance, 7));
+    return 24.0*(2.0/pow(distance, 13.0)-1.0/pow(distance, 7.0));
 }
 
 double MolecularDynamics::NewPosition(double r, double oldr, double force)
@@ -68,41 +69,42 @@ void MolecularDynamics::Dynamics()
 
     // Save initial positions
     for (int part = 0; part < numParticles; part++)
-            {
-                Data << positions[part*2] << " " << positions[part*2+1]; // Save x, y
+    {
+        Data << positions[part*2] << " " << positions[part*2+1]; // Save x, y
 
-                if (part != numParticles-1)
-                {
-                    Data << endl;
-                }
-                else // Keep line open so I can add the temperature and energy on the last line
-                {
-                    Data << " " << temp << " " << energy << endl << endl << endl;
-                }
-            }
+        if (part != numParticles-1)
+        {
+            Data << endl;
+        }
+        else // Keep line open so I can add the temperature and energy on the last line
+        {
+            Data << " " << temp << " " << energy << endl << endl << endl;
+        }
+    }
 
 
     for (int i = 0; i<duration*2.0; i++)
     {
         temp = 0;
 
+        // Force loop
         for (int part1 = 0; part1<numParticles; part1++)
         {
             // Unpack positions
             double rx1 = positions[part1*2];
             double ry1 = positions[part1*2+1];
 
-            // Make place to store force
-            double Fx = 0;
-            double Fy = 0;
+            // Reset force to zero for new loop
+            forces[part1*2] = 0;
+            forces[part1*2+1] = 0;
 
             for (int part2 = 0; part2<numParticles; part2++)
             {
                 if (part1 != part2) // Cannot accelerate itself
                 {
                     // Calculate minimum distance
-                    double dx = positions[part2*2]-rx1;
-                    double dy = positions[part2*2+1]-ry1;
+                    double dx = rx1-positions[part2*2];
+                    double dy = ry1-positions[part2*2+1];
                     if (dx > gridSize/2.0)
                     {
                         dx -= gridSize;
@@ -129,22 +131,40 @@ void MolecularDynamics::Dynamics()
 
                         // Calculate forces in each direction
                         double F = Force(r);
-                        Fx += F*dx/r;
-                        Fy += F*dy/r;
+                        forces[part1*2] += F*dx/r;
+                        forces[part1*2+1] += F*dy/r;
                     }
                 }
             }
+        }
+        
+        // Position loop
+        for (int part1 = 0; part1 < numParticles; part1++)
+        {
+            // Unpack positions
+            double rx1 = positions[part1*2];
+            double ry1 = positions[part1*2+1];
+
             // Unpack old positions
             double orx1 = oldPositions[part1*2];
             double ory1 = oldPositions[part1*2+1];
 
-            double scale = (i < duration) ? (1.0 + deltaEnergy) : (1.0 - deltaEnergy);
-            double adjusted_orx1 = rx1 - (rx1 - orx1) * scale;
-            double adjusted_ory1 = ry1 - (ry1 - ory1) * scale;
+            // Unpack force
+            double Fx = forces[part1*2];
+            double Fy = forces[part1*2+1];
+
+            double adjusted_orx1 = orx1;
+            double adjusted_ory1 = ory1;
+            if (i % 5 == 0)
+            {
+                double scale = (i < duration) ? (1.0 + deltaEnergy) : (1.0 - deltaEnergy);
+                adjusted_orx1 = rx1 - (rx1 - orx1) * scale;
+                adjusted_ory1 = ry1 - (ry1 - ory1) * scale;
+            }
 
             // Update new positions
-            positions[part1*2] = NewPosition(rx1, adjusted_orx1, Fx);
-            positions[part1*2+1] = NewPosition(ry1, adjusted_ory1, Fy);
+            positions[part1*2] = NewPosition(rx1, orx1, Fx);
+            positions[part1*2+1] = NewPosition(ry1, ory1, Fy);
 
             // Update old positions
             oldPositions[part1*2] = rx1;
@@ -181,14 +201,18 @@ void MolecularDynamics::Dynamics()
         // Calculate temp and energy
         temp /= numParticles;
 
-        if (i < duration) // Switch to subtract energy halfway through
+        if (i % 5 == 0)
         {
-            energy += deltaEnergy;
+            if (i < duration) // Switch to subtract energy halfway through
+            {
+                energy += deltaEnergy;
+            }
+            else
+            {
+                energy -= deltaEnergy;
+            }
         }
-        else
-        {
-            energy -= deltaEnergy;
-        }
+
         // Save temp, and energy
         if (i%10 == 0) // Save every 10 iterations
             {
