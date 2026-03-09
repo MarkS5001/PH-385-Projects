@@ -4,7 +4,7 @@ Header file for MolecularDynamics class
 Creates an outline of what the MolecularDynamics class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/2/2026
+Date: 3/9/2026
 */
 
 #pragma once
@@ -27,6 +27,7 @@ namespace MD
             double temp;
             double timeStep;
             double m = 1.0;
+            int coolLoops = 1e3;
             std::string filename;
 
         public:

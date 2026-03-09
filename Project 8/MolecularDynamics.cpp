@@ -6,7 +6,7 @@ Simulates the motion of molecules
 This code has limitations in the form of time step.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/2/2026
+Date: 3/9/2026
 */
 
 #include "MolecularDynamics.hpp"
@@ -66,6 +66,7 @@ void MolecularDynamics::Dynamics()
 {
     ofstream Data(filename);
     double energy = 0;
+    int energyAdd = 10; // How many steps til more heat is added
 
     // Save initial positions
     for (int part = 0; part < numParticles; part++)
@@ -83,9 +84,10 @@ void MolecularDynamics::Dynamics()
     }
 
 
-    for (int i = 0; i<duration*2.0; i++)
+    for (int i = 0; i<duration/*2.0*/+coolLoops; i++)
     {
         temp = 0;
+        double scale = 1;
 
         // Force loop
         for (int part1 = 0; part1<numParticles; part1++)
@@ -138,6 +140,18 @@ void MolecularDynamics::Dynamics()
             }
         }
         
+        if (i % energyAdd == 0 || i < coolLoops)
+        {
+            if (i < duration+coolLoops && i > coolLoops)
+            {
+                scale = 1.0 + deltaEnergy;
+            }
+            else
+            {
+                scale = 1.0 - deltaEnergy;
+            }
+        }
+
         // Position loop
         for (int part1 = 0; part1 < numParticles; part1++)
         {
@@ -155,16 +169,16 @@ void MolecularDynamics::Dynamics()
 
             double adjusted_orx1 = orx1;
             double adjusted_ory1 = ory1;
-            if (i % 5 == 0)
+
+            if (i % energyAdd == 0 || i < coolLoops)
             {
-                double scale = (i < duration) ? (1.0 + deltaEnergy) : (1.0 - deltaEnergy);
                 adjusted_orx1 = rx1 - (rx1 - orx1) * scale;
                 adjusted_ory1 = ry1 - (ry1 - ory1) * scale;
             }
 
             // Update new positions
-            positions[part1*2] = NewPosition(rx1, orx1, Fx);
-            positions[part1*2+1] = NewPosition(ry1, ory1, Fy);
+            positions[part1*2] = NewPosition(rx1, adjusted_orx1, Fx);
+            positions[part1*2+1] = NewPosition(ry1, adjusted_ory1, Fy);
 
             // Update old positions
             oldPositions[part1*2] = rx1;
@@ -201,20 +215,13 @@ void MolecularDynamics::Dynamics()
         // Calculate temp and energy
         temp /= numParticles;
 
-        if (i % 5 == 0)
+        if (i % energyAdd == 0 && i > coolLoops)
         {
-            if (i < duration) // Switch to subtract energy halfway through
-            {
-                energy += deltaEnergy;
-            }
-            else
-            {
-                energy -= deltaEnergy;
-            }
+            energy += temp*(1-1/scale/scale);
         }
 
         // Save temp, and energy
-        if (i%10 == 0) // Save every 10 iterations
+        if (i%10 == 0 && i > coolLoops) // Save every 10 iterations
             {
                 for (int part = 0; part < numParticles; part++)
                 {
