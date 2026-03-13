@@ -68,7 +68,7 @@ void MolecularDynamics::Dynamics()
     ofstream Datadown(filenamedown);
     double energy = 0;
     int energyAdd = 10; // How many steps til more heat is added
-    int saveRate = 1; // After how many runs to save
+    int saveRate = 100; // After how many runs to save
 
     // Save initial positions
     // for (int part = 0; part < numParticles; part++)
