@@ -10,5 +10,5 @@ fileup = 'resultsP8_up.txt'
 filedown = 'resultsP8_down.txt'
 
 # Plotting with your specific colors/styles
-plot fileup using 4:3 with points pt 7 ps 0.5 lc rgb "red" title "Data Points",\
-        filedown using 4:3 with points pt 7 ps 0.5 lc rgb "blue" title "Data Points"
+plot fileup using 4:3 with points pt 7 ps 0.5 lc rgb "red" title "Heating",\
+        filedown using 4:3 with points pt 7 ps 0.5 lc rgb "blue" title "Cooling"

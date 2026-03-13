@@ -243,15 +243,15 @@ void MolecularDynamics::Dynamics()
         {
             for (int part = 0; part < numParticles; part++)
             {
-                Dataup << positions[part*2] << " " << positions[part*2+1]; // Save x, y
+                Datadown << positions[part*2] << " " << positions[part*2+1]; // Save x, y
 
                 if (part != numParticles-1)
                 {
-                    Dataup << endl;
+                    Datadown << endl;
                 }
                 else // Keep line open so I can add the temperature and energy on the last line
                 {
-                    Dataup << " " << temp << " " << energy << endl << endl << endl;
+                    Datadown << " " << temp << " " << energy << endl << endl << endl;
                 }
             }
         }
