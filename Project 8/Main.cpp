@@ -8,7 +8,7 @@ per step, number of steps, a cutoff length,
 and time step. This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/12/2026
+Date: 3/13/2026
 */
 #include <iostream>
 #include <ctime>
@@ -24,7 +24,7 @@ int steps = 290000;
 double cutoffLength = 7.0;
 double timeStep = 1e-3;
 string filenameup = "resultsP8_up.txt";
-string filenamedowwn = "resultsP8_down.txt";
+string filenamedown = "resultsP8_down.txt";
 
 int main()
 {

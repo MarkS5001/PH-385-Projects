@@ -6,7 +6,9 @@ set xlabel "Q"
 set ylabel "k_b T"
 set title "Temperature vs Heat"
 
-file = 'resultsP8.txt'
+fileup = 'resultsP8_up.txt'
+filedown = 'resultsP8_down.txt'
 
 # Plotting with your specific colors/styles
-plot file using 4:3 with points pt 7 ps 0.5 lc rgb "purple" title "Data Points"
+plot fileup using 4:3 with points pt 7 ps 0.5 lc rgb "red" title "Data Points",\
+        filedown using 4:3 with points pt 7 ps 0.5 lc rgb "blue" title "Data Points"

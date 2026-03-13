@@ -6,7 +6,7 @@ Simulates the motion of molecules
 This code has limitations in the form of time step.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/9/2026
+Date: 3/13/2026
 */
 
 #include "MolecularDynamics.hpp"
@@ -17,11 +17,11 @@ using namespace std;
 using namespace MD;
 
 MolecularDynamics::MolecularDynamics(int GridSize, int NumParticles, double DeltaEnergy, int Duration, 
-                                    double CutoffLength, double TimeStep, string Filename) : 
+                                    double CutoffLength, double TimeStep, string Filenameup, string Filenamedown) : 
                                     gridSize(GridSize), positions(NumParticles*2,0), oldPositions(NumParticles*2,0), 
                                     deltaEnergy(DeltaEnergy), duration(Duration), numParticles(NumParticles), 
-                                    cutoffLength(CutoffLength), timeStep(TimeStep), filename(Filename),
-                                    forces(NumParticles*2,0){}
+                                    cutoffLength(CutoffLength), timeStep(TimeStep), filenameup(Filenameup),
+                                    forces(NumParticles*2,0), filenamedown(Filenamedown){}
 
 void MolecularDynamics::GivePositions(int NumParticle, double x, double y)
 {
@@ -64,30 +64,32 @@ double MolecularDynamics::Energy(int NumParticle)
 
 void MolecularDynamics::Dynamics()
 {
-    ofstream Data(filename);
+    ofstream Dataup(filenameup);
+    ofstream Datadown(filenamedown);
     double energy = 0;
     int energyAdd = 10; // How many steps til more heat is added
+    int saveRate = 1; // After how many runs to save
 
     // Save initial positions
-    for (int part = 0; part < numParticles; part++)
-    {
-        Data << positions[part*2] << " " << positions[part*2+1]; // Save x, y
+    // for (int part = 0; part < numParticles; part++)
+    // {
+    //     Data << positions[part*2] << " " << positions[part*2+1]; // Save x, y
 
-        if (part != numParticles-1)
-        {
-            Data << endl;
-        }
-        else // Keep line open so I can add the temperature and energy on the last line
-        {
-            Data << " " << temp << " " << energy << endl << endl << endl;
-        }
-    }
+    //     if (part != numParticles-1)
+    //     {
+    //         Data << endl;
+    //     }
+    //     else // Keep line open so I can add the temperature and energy on the last line
+    //     {
+    //         Data << " " << temp << " " << energy << endl << endl << endl;
+    //     }
+    // }
 
 
-    for (int i = 0; i<duration/*2.0*/+coolLoops; i++)
+    for (int i = 0; i<duration*2.0+coolLoops; i++)
     {
         temp = 0;
-        double scale = 1;
+        double scale = 10;
 
         // Force loop
         for (int part1 = 0; part1<numParticles; part1++)
@@ -221,22 +223,39 @@ void MolecularDynamics::Dynamics()
         }
 
         // Save temp, and energy
-        if (i%10 == 0 && i > coolLoops) // Save every 10 iterations
+        if (i%saveRate == 0 && i > coolLoops && i < duration+coolLoops) // Save every 10 iterations on heating
+        {
+            for (int part = 0; part < numParticles; part++)
             {
-                for (int part = 0; part < numParticles; part++)
-                {
-                    Data << positions[part*2] << " " << positions[part*2+1]; // Save x, y
+                Dataup << positions[part*2] << " " << positions[part*2+1]; // Save x, y
 
-                    if (part != numParticles-1)
-                    {
-                        Data << endl;
-                    }
-                    else // Keep line open so I can add the temperature and energy on the last line
-                    {
-                        Data << " " << temp << " " << energy << endl << endl << endl;
-                    }
+                if (part != numParticles-1)
+                {
+                    Dataup << endl;
+                }
+                else // Keep line open so I can add the temperature and energy on the last line
+                {
+                    Dataup << " " << temp << " " << energy << endl << endl << endl;
                 }
             }
+        }
+        if (i%saveRate == 0 && i > duration+coolLoops) // Save every 10 iterations on cooling
+        {
+            for (int part = 0; part < numParticles; part++)
+            {
+                Dataup << positions[part*2] << " " << positions[part*2+1]; // Save x, y
+
+                if (part != numParticles-1)
+                {
+                    Dataup << endl;
+                }
+                else // Keep line open so I can add the temperature and energy on the last line
+                {
+                    Dataup << " " << temp << " " << energy << endl << endl << endl;
+                }
+            }
+        }
     }
-    Data.close();
+    Dataup.close();
+    Datadown.close();
 }

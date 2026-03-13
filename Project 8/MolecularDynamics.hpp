@@ -4,7 +4,7 @@ Header file for MolecularDynamics class
 Creates an outline of what the MolecularDynamics class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/9/2026
+Date: 3/13/2026
 */
 
 #pragma once
@@ -28,10 +28,11 @@ namespace MD
             double timeStep;
             double m = 1.0;
             int coolLoops = 1e3;
-            std::string filename;
+            std::string filenameup;
+            std::string filenamedown;
 
         public:
-            MolecularDynamics(int GridSize, int NumParticles, double DeltaEnergy, int Duration, double CutoffLength, double TimeStep, std::string Filename);
+            MolecularDynamics(int GridSize, int NumParticles, double DeltaEnergy, int Duration, double CutoffLength, double TimeStep, std::string Filenameup, std::string Filenamedown);
             void GivePositions(int NumParticle, double x, double y);
             double Distance(int NumParticle1, int NumParticle2);
             double Force(double distance);
