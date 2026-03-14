@@ -3,7 +3,9 @@ Class MolecularDynamics
 
 Simulates the motion of molecules
 
-This code has limitations in the form of time step.
+This code has limitations in the form of time step, and heat amount.
+The simulation is highly dependant on these two conditions. Changing them
+requires changing other parameters as well.
 
 Author: Mark Smith (smi20046@byui.edu)
 Date: 3/13/2026
