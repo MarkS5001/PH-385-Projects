@@ -15,3 +15,30 @@ Date: 3/16/2026
 #include <cmath>
 using namespace std;
 using namespace QE;
+
+QuantumEnergy::QuantumEnergy(double WellSize, double Dx, double DE, double NExcited, std::string Filename) :
+                                wellSize(WellSize), dx(Dx), dE(DE), nExcited(NExcited), filename(Filename),
+                                psi(WellSize/Dx*NExcited), positions(WellSize/Dx){};
+
+double QuantumEnergy::Potential(int n, double x)
+{
+    return pow(x,n)/n;
+}
+
+void QuantumEnergy::Normalize()
+{
+    for (int n = 1; n <= nExcited; n++)
+    {
+        
+    }
+}
+
+void QuantumEnergy::Shooting() // Starts at middle and goes to inf, then the other side is a reflection
+{
+
+}
+
+void QuantumEnergy::Matching() // Starts at inf and goes to the middle, then the other side is a reflection
+{
+
+}

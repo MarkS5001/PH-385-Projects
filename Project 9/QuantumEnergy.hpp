@@ -15,7 +15,20 @@ namespace QE
     class QuantumEnergy
     {
         private:
+            double wellSize; // Size of well
+            std::string filename;
+            double dx; // Step size
+            std::vector<double> psi; // Value of wavefunction
+            std::vector<double> positions; // x position of wavefunction
+            double dE; // Step size of energy
+            double nExcited; // n value of most excited state wanted
+
         public:
-            QuantumEnergy();
+            QuantumEnergy(double WellSize, double Dx, double DE, double NExcited, std::string Filename);
+            double Potential(int n, double x);
+            void Normalize();
+            void Shooting();
+            void Matching();
+
     };
 }
