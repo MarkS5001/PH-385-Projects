@@ -22,13 +22,15 @@ namespace QE
             std::vector<double> positions; // x position of wavefunction
             double dE; // Step size of energy
             double nExcited; // n value of most excited state wanted
+            std::vector<double> energies; // Hold values from energies
 
         public:
             QuantumEnergy(double WellSize, double Dx, double DE, double NExcited, std::string Filename);
             double Potential(int n, double x);
             void Normalize();
-            void Shooting();
-            void Matching();
+            void Shooting(int N);
+            void Matching(int N);
+            double Schrodinger(double last, double current, double energy, int n, double x);
 
     };
 }
