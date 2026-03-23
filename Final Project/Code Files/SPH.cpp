@@ -99,11 +99,12 @@ void SPH::checkCollisions()
 
 
 // Kernels
-double SPH::W_poly6(double r)
+double SPH::W_poly6(double r2)
 {
-    if (0 <= r && r <= h)
+    if (r2 < h2)
     {
-        return termPoly*pow((h2-r*r),3);
+        double r = h2-r2;
+        return termPoly*r*r*r;
     }
     else
     {
@@ -115,7 +116,8 @@ double SPH::W_spiky_grad(double r)
 {
     if (0 <= r && r <= h)
     {
-        return termSpiky*pow(h-r,3);
+        double d = h-r;
+        return -termSpiky*d*d;
     }
     else
     {
@@ -127,7 +129,7 @@ double SPH::W_visc_laplacian(double r)
 {
     if (0 <= r && r <= h)
     {
-        return termVis*(-r*r*r/(2*h2*h)+r*r/h2+h/(2*r)-1);
+        return termVis*(h-r);//(-r*r*r/(2*h2*h)+r*r/h2+h/(2*r)-1);
     }
     else
     {
