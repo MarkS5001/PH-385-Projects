@@ -23,10 +23,10 @@ namespace FM
             double height; // y dimension of the box
             double depth; // z dimension of the box
 
-            const double rho_0 = 1000.0; // Rest density of water
-            const double visc = 250.0; // Viscosity (adjust for "thickness")
-            const double stiff = 200.0; // Bulk Modulus (Tait Equation 'B')
-            const double m = 0.02; // Mass per particle
+            const double rho_0 = 10; //1000.0; // Rest density of water
+            const double visc = 50;//250.0; // Viscosity (adjust for "thickness")
+            const double stiff = 2000.0;//200.0; // Bulk Modulus (Tait Equation 'B')
+            const double m = 0.1;//0.02; // Mass per particle
             const double g = -9.81; // Gravity acceleration
             const double h; // Smoothing length
             const double h2; // h^2
@@ -56,7 +56,7 @@ namespace FM
             void checkCollisions(); // Keeps particles inside the box
 
             // Kernels for fluid proprieties
-            double W_poly6(double r);
+            double W_poly6(double r2);
             double W_spiky_grad(double r);
             double W_visc_laplacian(double r);
 

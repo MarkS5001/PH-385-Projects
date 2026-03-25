@@ -19,7 +19,7 @@ int main()
     clock_t start = clock(); // Get program start time
 
     // Initial parameters for simulation
-    double h = 0.45; // Smoothing length
+    double h = 1.0;//0.45; // Smoothing length
     double dt = 0.002;
     string filename = "resultsFP.txt";
     double width = 5.0;

@@ -22,12 +22,12 @@ SPH::SPH(int NumParticles, double H, double Dt, std::string Filename, double Wid
             gridZ(ceil(Depth/H)), pos(NumParticles*3, 0.0), vel(NumParticles*3, 0.0), 
             acc(NumParticles*3, 0.0), rho(NumParticles, 0.0), p(NumParticles, 0.0), 
             head(ceil(Width/H) * ceil(Height/H) * ceil(Depth/H), -1), next(NumParticles, -1), 
-            termPoly(315/(64*M_PI*pow(H,9))), termSpiky(30/(M_PI*pow(H,6))), termVis(45/(M_PI*pow(H,6))) {}
+            termPoly(315/(64*M_PI*pow(H,9))), termSpiky(45/(M_PI*pow(H,6))), termVis(45/(M_PI*pow(H,6))) {}
 
 void SPH::initVolume(double x, double y, double z, int nx, int ny, int nz)
 {
     int particle = 0;
-    double spacing = h*0.8;
+    double spacing = h*0.5;
 
     for (int X = 0; X < nx; X++)
     {
@@ -197,7 +197,7 @@ void SPH::computeForces()
                                 double r = sqrt(r2);
 
                                 // Acceleration from pressure
-                                double ap = -m*(p[i]+p[j])/(2*rho[j])*W_spiky_grad(r);
+                                double ap = /*-*/m*(p[i]+p[j])/(2*rho[j])*W_spiky_grad(r);
 
                                 // Acceleration from viscosity
                                 double avx = visc*m*(vel[j*3+0]-vel[i*3+0])/rho[j]*W_visc_laplacian(r);
@@ -291,7 +291,7 @@ double SPH::W_spiky_grad(double r)
     if (0 <= r && r <= h)
     {
         double d = h-r;
-        return -termSpiky*d*d;
+        return /*-*/termSpiky*d*d;
     }
     else
     {
