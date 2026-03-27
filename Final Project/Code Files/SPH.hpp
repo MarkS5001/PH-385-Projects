@@ -4,7 +4,7 @@ Header file for SPH class
 Creates an outline of what the SPH class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/23/2026
+Date: 3/27/2026
 */
 
 #pragma once
@@ -23,10 +23,10 @@ namespace FM
             double height; // y dimension of the box
             double depth; // z dimension of the box
 
-            const double rho_0 = 10; //1000.0; // Rest density of water
-            const double visc = 50;//250.0; // Viscosity (adjust for "thickness")
-            const double stiff = 2000.0;//200.0; // Bulk Modulus (Tait Equation 'B')
-            const double m = 0.1;//0.02; // Mass per particle
+            const double rho_0 = 3.0;//5.0//0; //1000.0; // Rest density of water
+            const double visc = 5.5; // Viscosity (adjust for "thickness")
+            const double stiff = 2000;//5000000.0;//200.0; // Bulk Modulus (Tait Equation 'B')
+            const double m = 0.02; // Mass per particle
             const double g = -9.81; // Gravity acceleration
             const double h; // Smoothing length
             const double h2; // h^2

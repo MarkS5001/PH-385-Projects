@@ -6,7 +6,7 @@ Fluid mechanics simulation using smoothed particle hydrodynamics.
 This code has limitations .
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/23/2026
+Date: 3/27/2026
 */
 
 #include "SPH.hpp"
@@ -27,7 +27,7 @@ SPH::SPH(int NumParticles, double H, double Dt, std::string Filename, double Wid
 void SPH::initVolume(double x, double y, double z, int nx, int ny, int nz)
 {
     int particle = 0;
-    double spacing = h*0.5;
+    double spacing = h*0.7;
 
     for (int X = 0; X < nx; X++)
     {
@@ -141,6 +141,7 @@ void SPH::computeDensityPressure()
                         {
                             // Muller Density Equation: rho = sum(m * W)
                             rho[i] += m * W_poly6(r2);
+                            // cout << "Particle 0 found neighbor " << j << " at dist squared: " << r2 << endl;
                         }
                         
                         j = next[j]; // Move to the next particle in the "mailbox"
@@ -152,6 +153,7 @@ void SPH::computeDensityPressure()
         // Calculate pressure
         p[i] = stiff * (rho[i] - rho_0);
         if (p[i] < 0) p[i] = 0; // Clamp pressure to prevent clumping
+        if (rho[i] < rho_0) rho[i] = rho_0;
     }
 }
 
@@ -159,7 +161,7 @@ void SPH::computeForces()
 {
     for (int i = 0; i < numParticles; i++) 
     {
-        acc[i*3+0] = 0.0; // Default density
+        acc[i*3+0] = 0.0; // Default acceleration
         acc[i*3+1] = 0.0;
         acc[i*3+2] = 0.0;
 
@@ -218,6 +220,7 @@ void SPH::computeForces()
         }
         // Add gravity
         acc[i*3+1] += g;
+        // if (i == 0) cout << "P0 Pressure: " << p[i] << " AccX: " << acc[i*3+0] << endl;
     }
 }
 
@@ -239,34 +242,34 @@ void SPH::integrate()
         if (pos[i*3+0] < 0.0) 
         {
             pos[i*3+0] = 0.001; // Stick it to the wall
-            vel[i*3+0] *= -0.5; // Have it loose energy
+            vel[i*3+0] *= -0.05; // Have it loose energy
         }
         if (pos[i*3+0] > width)
         {
             pos[i*3+0] = width-0.001; // Stick it to the wall
-            vel[i*3+0] *= -0.5; // Have it loose energy
+            vel[i*3+0] *= -0.05; // Have it loose energy
         }
 
         if (pos[i*3+1] < 0.0) 
         {
             pos[i*3+1] = 0.001; // Stick it to the wall
-            vel[i*3+1] *= -0.5; // Have it loose energy
+            vel[i*3+1] *= -0.05; // Have it loose energy
         }
         if (pos[i*3+1] > height)
         {
             pos[i*3+1] = height-0.001; // Stick it to the wall
-            vel[i*3+1] *= -0.5; // Have it loose energy
+            vel[i*3+1] *= -0.05; // Have it loose energy
         }
 
         if (pos[i*3+2] < 0.0) 
         {
             pos[i*3+2] = 0.001; // Stick it to the wall
-            vel[i*3+2] *= -0.5; // Have it loose energy
+            vel[i*3+2] *= -0.05; // Have it loose energy
         }
         if (pos[i*3+2] > depth)
         {
             pos[i*3+2] = depth-0.001; // Stick it to the wall
-            vel[i*3+2] *= -0.5; // Have it loose energy
+            vel[i*3+2] *= -0.05; // Have it loose energy
         }
 
     }
