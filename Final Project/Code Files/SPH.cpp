@@ -71,13 +71,15 @@ void SPH::simulation(int duration)
 
         // Move particles
         integrate();
-
-        // Save positions
-        for (int i = 0; i < numParticles; i++)
+        if (t%20 == 0)
         {
-            Positions << pos[i*3+0] << " " << pos[i*3+1] << " " << pos[i*3+2] << endl;
+            // Save positions
+            for (int i = 0; i < numParticles; i++)
+            {
+                Positions << pos[i*3+0] << " " << pos[i*3+1] << " " << pos[i*3+2] << endl;
+            }
+            Positions << endl << endl;
         }
-        Positions << endl << endl;
     }
     Positions.close();
 }
