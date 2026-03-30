@@ -42,7 +42,7 @@ int main()
 
     FM::SPH fluidSystem(numParticles, h, dt, filename, width, height, depth);
     
-    fluidSystem.initVolume(x, y, z, nx, ny, nz);
+    fluidSystem.initVolumeS(x, y, z, nx, ny, nz);
 
     fluidSystem.simulation(5000);
 

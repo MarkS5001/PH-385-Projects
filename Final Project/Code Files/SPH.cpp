@@ -50,6 +50,50 @@ void SPH::initVolume(double x, double y, double z, int nx, int ny, int nz)
     }
 }
 
+void SPH::initVolumeS(double x, double y, double z, int nx, int ny, int nz)
+{
+    int particle = 0;
+    double spacing = h * 0.7; // Keeping your stable spacing
+    
+    // nx will act as the number of radial rings
+    // ny will act as the number of particles in the first ring (increases with R)
+    // nz remains the number of vertical layers (height)
+
+    for (int layer = 0; layer < nz; layer++)
+    {
+        double currentZ = z + (layer * spacing);
+
+        // Center particle for each layer
+        if (particle < numParticles) {
+            pos[particle*3+0] = x; 
+            pos[particle*3+1] = y;
+            pos[particle*3+2] = currentZ;
+            particle++;
+        }
+
+        for (int ring = 1; ring <= nx; ring++)
+        {
+            double currentRadius = ring * spacing;
+            // Calculate how many particles fit in this circumference
+            // Circumference / spacing gives a good density balance
+            int particlesInRing = floor(2.0 * M_PI * currentRadius / spacing);
+
+            for (int i = 0; i < particlesInRing; i++)
+            {
+                if (particle >= numParticles) return;
+
+                double angle = i * (2.0 * M_PI / particlesInRing);
+                
+                pos[particle*3+0] = x + currentRadius * cos(angle);
+                pos[particle*3+1] = y + currentRadius * sin(angle);
+                pos[particle*3+2] = currentZ;
+
+                particle++;
+            }
+        }
+    }
+}
+
 void SPH::simulation(int duration)
 {
     // Set up file handling and save initial positions

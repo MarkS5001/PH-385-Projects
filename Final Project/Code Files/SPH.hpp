@@ -24,7 +24,7 @@ namespace FM
             double depth; // z dimension of the box
 
             const double rho_0 = 3.0;//5.0//0; //1000.0; // Rest density of water
-            const double visc = 2.5;//5.5 // Viscosity (adjust for "thickness")
+            const double visc = 2.5; //5.5 // Viscosity (adjust for "thickness")
             const double stiff = 2000;//5000000.0;//200.0; // Bulk Modulus (Tait Equation 'B')
             const double m = 0.02; // Mass per particle
             const double g = -9.81; // Gravity acceleration
@@ -47,6 +47,7 @@ namespace FM
         public:
             SPH(int NumParticles, double H, double Dt, std::string Filename, double Width, double Height, double Depth); // Constructor to set initial values
             void initVolume(double x, double y, double z, int nx, int ny, int nz); // Puts all particles in volume
+            void initVolumeS(double x, double y, double z, int nx, int ny, int nz);
             void simulation(int duration); // Simulation method
 
             void buildGrid(); // Rebuilds linked-list every frame
