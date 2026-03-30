@@ -23,7 +23,7 @@ int main()
     double dt = 0.001;
     string filename = "resultsFP.txt";
     double width = 5.0;
-    double height = 5.0;
+    double height = 50.0;
     double depth = 5.0;
 
     // Starting position to put particles in
@@ -33,7 +33,7 @@ int main()
 
     // Particles to put in each starting direction
     int nx = 7;
-    int ny = 7;
+    int ny = 70;
     int nz = 7;
 
     // Total number of particles based off above
