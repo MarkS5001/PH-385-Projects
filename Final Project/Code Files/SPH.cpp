@@ -3,10 +3,13 @@ Class SPH
 
 Fluid mechanics simulation using smoothed particle hydrodynamics.
 
-This code has limitations .
+This code has limitations on all of the inputs. The initial values 
+are all heavily interconnected, so a slight change in one dramatically
+changes the rest of the simulation. So if changing something, additional
+changes are also most likely needed.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/27/2026
+Date: 4/1/2026
 */
 
 #include "SPH.hpp"
@@ -259,7 +262,7 @@ void SPH::computeForces()
 
                             }
                         }
-                        j = next[j]; // Move to the next particle in the "mailbox"
+                        j = next[j]; // Move to the next particle in the subgrid
                     }
                 }
             }

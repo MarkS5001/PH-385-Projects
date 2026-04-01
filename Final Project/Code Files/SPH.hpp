@@ -4,7 +4,7 @@ Header file for SPH class
 Creates an outline of what the SPH class defines
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/27/2026
+Date: 4/1/2026
 */
 
 #pragma once
@@ -46,13 +46,13 @@ namespace FM
 
         public:
             SPH(int NumParticles, double H, double Dt, std::string Filename, double Width, double Height, double Depth); // Constructor to set initial values
-            void initVolume(double x, double y, double z, int nx, int ny, int nz); // Puts all particles in volume
-            void initVolumeS(double x, double y, double z, int nx, int ny, int nz);
+            void initVolume(double x, double y, double z, int nx, int ny, int nz); // Puts all particles in volume (cubic)
+            void initVolumeS(double x, double y, double z, int nx, int ny, int nz); // Puts all particles in volume (cylinder)
             void simulation(int duration); // Simulation method
 
-            void buildGrid(); // Rebuilds linked-list every frame
-            void computeDensityPressure(); // Pass 1: Density -> Tait Eq -> Pressure
-            void computeForces(); // Pass 2: Pressure + Viscosity + Gravity
+            void buildGrid(); // Builds grids for the particle smoothing length
+            void computeDensityPressure(); // Computes the density for the particles
+            void computeForces(); // Computes these forces: Pressure, Viscosity, and Gravity
             void integrate(); // Moves particles
             void checkCollisions(); // Keeps particles inside the box
 

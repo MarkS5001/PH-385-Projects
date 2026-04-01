@@ -3,10 +3,12 @@ PH 385 Final Project Main File
 
 Fluid mechanics simulation using smoothed particle hydrodynamics.
 
-The user inputs . This is followed by an output file name.
+The user inputs smoothing length, step size, starting point for 
+particles, how many particles in each direction, and box dimensions, 
+all in arbitrary units. This is followed by an output file name.
 
 Author: Mark Smith (smi20046@byui.edu)
-Date: 3/27/2026
+Date: 4/1/2026
 */
 #include <iostream>
 #include <ctime>
